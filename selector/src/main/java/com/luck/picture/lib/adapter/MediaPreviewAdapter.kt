@@ -189,6 +189,8 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         val position = selectResult.indexOf(currentMedia)
         if (position >= 0) {
             holder.tvSelectView.text = "${position + 1}"
+        } else {
+            holder.tvSelectView.text = "0"
         }
     }
 

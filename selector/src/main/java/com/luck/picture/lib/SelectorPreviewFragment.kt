@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
@@ -123,9 +124,26 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
         initWidgets()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun registerLiveData() {
-        globalViewMode.getSelectResultLiveData().observe(viewLifecycleOwner) { change ->
-            onSelectionResultChange(change)
+        globalViewMode.getSelectResultLiveData().observe(viewLifecycleOwner) { media ->
+            val position = mAdapter.getData().indexOf(media)
+                Looper.myQueue().addIdleHandler {
+                    mAdapter.notifyDataSetChanged()
+                    return@addIdleHandler false
+                }
+
+//            mAdapter.notifyItemChanged(position)
+//            if (checkNotifyStrategy(getSelectResult().indexOf(media) != -1)) {
+//                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) position + 1 else position)
+//                Looper.myQueue().addIdleHandler {
+//                    mAdapter.notifyDataSetChanged()
+//                    return@addIdleHandler false
+//                }
+//            } else {
+//                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) position + 1 else position)
+//            }
+            onSelectionResultChange(media)
         }
         globalViewMode.getOriginalLiveData().observe(viewLifecycleOwner) { isOriginal ->
             onOriginalChange(isOriginal)
