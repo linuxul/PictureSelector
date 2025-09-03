@@ -398,6 +398,11 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
                 onSelectedItemClick(view)
             }
         })
+        mAdapter.setOnGetSelectResultListener(object : MediaPreviewAdapter.OnGetSelectResultListener {
+            override fun onSelectResult(): MutableList<LocalMedia> {
+                return getSelectResult()
+            }
+        })
     }
 
     open fun onTitleChange(title: String?) {

@@ -1,5 +1,6 @@
 package com.luck.picture.lib.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -97,6 +98,7 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         holder.setOnLongClickListener(mLongClickListener)
         holder.setOnItemClickListener(mOnItemClickListener)
         holder.bindData(mData[position], position)
+        notifySelectNumberStyle(holder, mData[position])
     }
 
     override fun getItemCount(): Int {
@@ -178,5 +180,25 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         for (key in mViewHolderCache.keys) {
             mViewHolderCache[key]?.release()
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun notifySelectNumberStyle(holder: BasePreviewMediaHolder, currentMedia: LocalMedia) {
+        holder.tvSelectView.text = ""
+        val selectResult = mGetSelectResultListener?.onSelectResult() ?: mutableListOf()
+        val position = selectResult.indexOf(currentMedia)
+        if (position >= 0) {
+            holder.tvSelectView.text = "${position + 1}"
+        }
+    }
+
+    var mGetSelectResultListener: OnGetSelectResultListener? = null
+
+    fun setOnGetSelectResultListener(listener: OnGetSelectResultListener?) {
+        this.mGetSelectResultListener = listener
+    }
+
+    interface OnGetSelectResultListener {
+        fun onSelectResult(): MutableList<LocalMedia>
     }
 }
