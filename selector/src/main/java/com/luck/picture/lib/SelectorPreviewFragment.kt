@@ -245,7 +245,25 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
         mTvOriginal?.isSelected = isOriginal
     }
 
+    // 하단에 확인 버튼 처리
     open fun onSelectedClick(v: View) {
+        val media = getPreviewWrap().source[viewPager.currentItem]
+        val resultCode =
+            confirmSelect(media, v.isSelected)
+        if (resultCode == SelectedState.INVALID) {
+            return
+        }
+        val isSelected = resultCode == SelectedState.SUCCESS
+        if (isSelected) {
+            startSelectedAnim(v)
+        }
+        v.isSelected = isSelected
+        if (config.selectionMode == SelectionMode.ONLY_SINGLE) {
+            handleSelectResult()
+        }
+    }
+
+    open fun onSelectedItemClick(v: View) {
         val media = getPreviewWrap().source[viewPager.currentItem]
         val resultCode =
             confirmSelect(media, v.isSelected)
@@ -287,15 +305,17 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
     }
 
     open fun onPreviewItemClick(media: LocalMedia) {
-        if (config.isPreviewFullScreenMode) {
-            //previewFullScreenMode()
-        } else {
-            if (isHasMagicalEffect()) {
-                // mMagicalView?.backToMin()
-            } else {
-                onBackPressed()
-            }
-        }
+        onSelectionResultChange(media)
+
+//        if (config.isPreviewFullScreenMode) {
+//            //previewFullScreenMode()
+//        } else {
+//            if (isHasMagicalEffect()) {
+//                // mMagicalView?.backToMin()
+//            } else {
+//                onBackPressed()
+//            }
+//        }
     }
 
     override fun onSelectionResultChange(change: LocalMedia?) {
@@ -367,6 +387,15 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
         mAdapter.setOnTitleChangeListener(object : MediaPreviewAdapter.OnTitleChangeListener {
             override fun onTitle(title: String?) {
                 onTitleChange(title)
+            }
+        })
+        mAdapter.setOnItemClickListener(object : MediaPreviewAdapter.OnItemClickListener {
+            override fun onItemClick(
+                media: LocalMedia,
+                view: View
+            ) {
+                // onPreviewItemClick(media)
+                onSelectedItemClick(view)
             }
         })
     }

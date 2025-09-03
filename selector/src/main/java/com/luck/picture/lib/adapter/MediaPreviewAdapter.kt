@@ -1,6 +1,7 @@
 package com.luck.picture.lib.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.luck.picture.lib.R
@@ -94,6 +95,7 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         holder.setOnClickListener(mClickListener)
         holder.setOnTitleChangeListener(mTitleChangeListener)
         holder.setOnLongClickListener(mLongClickListener)
+        holder.setOnItemClickListener(mOnItemClickListener)
         holder.bindData(mData[position], position)
     }
 
@@ -159,6 +161,16 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
 
     interface OnTitleChangeListener {
         fun onTitle(title: String?)
+    }
+
+    private var mOnItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(l: OnItemClickListener?) {
+        this.mOnItemClickListener = l
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(media: LocalMedia, view: View)
     }
 
 

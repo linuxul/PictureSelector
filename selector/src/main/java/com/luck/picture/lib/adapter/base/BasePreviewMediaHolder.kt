@@ -1,14 +1,19 @@
 package com.luck.picture.lib.adapter.base
 
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.luck.picture.lib.R
 import com.luck.picture.lib.adapter.MediaPreviewAdapter
+import com.luck.picture.lib.config.SelectionMode
+import com.luck.picture.lib.constant.SelectedState
+import com.luck.picture.lib.constant.SelectorConstant
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnLongClickListener
 import com.luck.picture.lib.provider.SelectorProviders
 import com.luck.picture.lib.utils.DensityUtil
+import com.luck.picture.lib.widget.StyleTextView
 
 /**
  * @author：luck
@@ -22,7 +27,9 @@ abstract class BasePreviewMediaHolder(itemView: View) : RecyclerView.ViewHolder(
     var screenAppInHeight = DensityUtil.getRealScreenHeight(itemView.context)
     val imageCover: ImageView = itemView.findViewById(R.id.iv_preview_cover)
 
-    open fun getRealSizeFromMedia(media: LocalMedia): IntArray {
+    var tvSelectView: StyleTextView =itemView.findViewById(R.id.ps_tv_check)
+
+        open fun getRealSizeFromMedia(media: LocalMedia): IntArray {
         return if ((media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0) {
             intArrayOf(media.cropWidth, media.cropHeight)
         } else {
@@ -50,15 +57,23 @@ abstract class BasePreviewMediaHolder(itemView: View) : RecyclerView.ViewHolder(
      * bind data
      */
     open fun bindData(media: LocalMedia, position: Int) {
+        tvSelectView.visibility =
+            if (config.selectionMode == SelectionMode.ONLY_SINGLE) View.GONE else View.VISIBLE
+
         loadCover(media)
         coverScaleType(media)
         coverLayoutParams(media)
+
         imageCover.setOnClickListener {
             setClickEvent(media)
         }
         imageCover.setOnLongClickListener {
             setLongClickEvent(this, position, media)
             return@setOnLongClickListener false
+        }
+
+        tvSelectView.setOnClickListener {
+            setItemClickEvent(media, it)
         }
     }
 
@@ -103,4 +118,16 @@ abstract class BasePreviewMediaHolder(itemView: View) : RecyclerView.ViewHolder(
     open fun setPreviewVideoTitle(title: String?) {
         onTitleChangeListener?.onTitle(title)
     }
+
+    private var onItemClickListener: MediaPreviewAdapter.OnItemClickListener? = null
+
+    fun setOnItemClickListener(l: MediaPreviewAdapter.OnItemClickListener?) {
+        this.onItemClickListener = l
+    }
+
+    open fun setItemClickEvent(media: LocalMedia, view: View) {
+        onItemClickListener?.onItemClick(media, view)
+    }
+
+
 }

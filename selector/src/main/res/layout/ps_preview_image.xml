@@ -10,8 +10,8 @@
 
     <com.luck.picture.lib.widget.StyleTextView
         android:id="@+id/ps_tv_check"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="top|right"
         android:layout_marginTop="100dp"
         android:layout_marginRight="30dp"
