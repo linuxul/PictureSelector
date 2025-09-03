@@ -64,7 +64,7 @@ open class SelectorNumberPreviewFragment : SelectorPreviewFragment() {
     override fun initViews(view: View) {
         super.initViews(view)
         rvGallery = view.findViewById(R.id.ps_rv_gallery)
-        navBarViews.add(rvGallery)
+        // navBarViews.add(rvGallery)
         rvGallery.visibility = View.GONE
 //            if (getSelectResult().isEmpty()) View.GONE else View.VISIBLE
     }

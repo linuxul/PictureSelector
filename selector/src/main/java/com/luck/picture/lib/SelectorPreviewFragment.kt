@@ -147,14 +147,14 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
             titleViews.add(it)
         }
         // BottomNarBar
-        mBottomNarBar = view.findViewById(R.id.ps_bottom_nar_bar)
+        // mBottomNarBar = view.findViewById(R.id.ps_bottom_nar_bar)
         mTvEditor = view.findViewById(R.id.ps_tv_editor)
         mTvOriginal = view.findViewById(R.id.ps_tv_original)
         mTvComplete = view.findViewById(R.id.ps_tv_complete)
         mTvSelectNum = view.findViewById(R.id.ps_tv_select_num)
-        mBottomNarBar?.let {
-            navBarViews.add(it)
-        }
+//        mBottomNarBar?.let {
+//            navBarViews.add(it)
+//        }
 
         // MagicalView
         mMagicalView = view.findViewById(R.id.magical)
@@ -189,7 +189,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
             onBackClick(it)
         }
         mTvSelected?.setOnClickListener {
-            onSelectedClick(it)
+             onSelectedClick(it)
         }
     }
 
