@@ -232,46 +232,46 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<RadioGroup>(R.id.rgb_language).setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.rb_system -> {
+                R.id.rb_system_language -> {
                     language = Language.SYSTEM_LANGUAGE
                 }
-                R.id.rb_chinese -> {
+                R.id.rb_chinese_language -> {
                     language = Language.CHINESE
                 }
-                R.id.rb_tw -> {
+                R.id.rb_tw_language -> {
                     language = Language.TRADITIONAL_CHINESE
                 }
-                R.id.rb_us -> {
+                R.id.rb_us_language -> {
                     language = Language.ENGLISH
                 }
-                R.id.rb_ka -> {
+                R.id.rb_ko_language -> {
                     language = Language.KOREA
                 }
-                R.id.rb_spanish -> {
+                R.id.rb_spanish_language -> {
                     language = Language.SPANISH
                 }
-                R.id.rb_de -> {
+                R.id.rb_de_language -> {
                     language = Language.GERMANY
                 }
-                R.id.rb_fr -> {
+                R.id.rb_fr_language -> {
                     language = Language.FRANCE
                 }
-                R.id.rb_japan -> {
+                R.id.rb_ja_language -> {
                     language = Language.JAPAN
                 }
-                R.id.rb_portugal -> {
+                R.id.rb_pt_language -> {
                     language = Language.PORTUGAL
                 }
-                R.id.rb_ar -> {
+                R.id.rb_ar_language -> {
                     language = Language.AR
                 }
-                R.id.rb_ru -> {
+                R.id.rb_ru_language -> {
                     language = Language.RU
                 }
-                R.id.rb_cs -> {
+                R.id.rb_cs_language -> {
                     language = Language.CS
                 }
-                R.id.rb_kk -> {
+                R.id.rb_kk_language -> {
                     language = Language.KK
                 }
             }

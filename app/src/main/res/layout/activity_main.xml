@@ -15,7 +15,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ImageView
         android:id="@+id/left_back"
         android:layout_width="wrap_content"
@@ -63,18 +62,15 @@
                 android:orientation="vertical">
 
                 <include layout="@layout/layout_number" />
-
                 <include layout="@layout/layout_video_number" />
-
                 <include layout="@layout/layout_row_number" />
-
                 <include layout="@layout/layout_page_number" />
 
                 <CheckBox
                     android:id="@+id/check_system"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="系统相册"
+                    android:text="시스템 앨범"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -89,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="全部"
+                        android:text="전체"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -97,7 +93,7 @@
                         android:id="@+id/rb_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="图片"
+                        android:text="사진"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -105,7 +101,7 @@
                         android:id="@+id/rb_video"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="视频"
+                        android:text="동영상"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -113,7 +109,7 @@
                         android:id="@+id/rb_audio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="音频"
+                        android:text="오디오"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -129,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="默认风格"
+                        android:text="기본 스타일"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -137,7 +133,7 @@
                         android:id="@+id/rb_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="白色风格"
+                        android:text="흰색 스타일"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -145,7 +141,7 @@
                         android:id="@+id/rb_num_new"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="数字风格"
+                        android:text="숫자 스타일"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -157,12 +153,13 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_window_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:button="@drawable/ps_ic_trans_1px"
                         android:enabled="false"
-                        android:text="启动效果"
+                        android:text="시작 효과"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -171,7 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="默认"
+                        android:text="기본"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -179,7 +176,7 @@
                         android:id="@+id/rb_window_up_anim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="底部弹出"
+                        android:text="아래에서 위로"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -191,12 +188,13 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_list_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:button="@drawable/ps_ic_trans_1px"
                         android:enabled="false"
-                        android:text="列表动画"
+                        android:text="목록 애니메이션"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -205,7 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="默认"
+                        android:text="기본"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -213,7 +211,7 @@
                         android:id="@+id/rb_alpha_list_anim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="透明渐变"
+                        android:text="투명도 효과"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -221,7 +219,7 @@
                         android:id="@+id/rb_scale_list_anim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="底部渐入"
+                        android:text="아래에서 확대"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -236,7 +234,7 @@
                         android:id="@+id/rb_single"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="单选"
+                        android:text="단일 선택"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -244,7 +242,7 @@
                         android:id="@+id/rb_only_single"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="单选-返回"
+                        android:text="단일 선택 후 닫기"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -253,12 +251,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="多选"
+                        android:text="다중 선택"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
                 </RadioGroup>
 
                 <RadioGroup
+                    android:id="@+id/rgb_result_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -296,13 +295,14 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_player_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:button="@drawable/ps_ic_trans_1px"
                         android:checked="true"
                         android:enabled="false"
-                        android:text="视频"
+                        android:text="동영상 플레이어"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -311,7 +311,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="默认"
+                        android:text="기본"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
 
@@ -335,7 +335,7 @@
                         android:id="@+id/rb_system_player"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="系统"
+                        android:text="시스템"
                         android:textColor="@color/ps_color_black"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -347,115 +347,115 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rb_system"
+                        android:id="@+id/rb_system_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="系统语言"
+                        android:text="시스템 언어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_chinese"
+                        android:id="@+id/rb_chinese_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="中文"
+                        android:text="중국어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_tw"
+                        android:id="@+id/rb_tw_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="繁体"
+                        android:text="중국어(번체)"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_us"
+                        android:id="@+id/rb_us_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="英语"
+                        android:text="영어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_ka"
+                        android:id="@+id/rb_ko_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="韩语"
+                        android:text="한국어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_spanish"
+                        android:id="@+id/rb_spanish_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="西班牙语"
+                        android:text="스페인어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_de"
+                        android:id="@+id/rb_de_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="德语"
+                        android:text="독일어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_fr"
+                        android:id="@+id/rb_fr_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="法语"
+                        android:text="프랑스어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_japan"
+                        android:id="@+id/rb_ja_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="日语"
+                        android:text="일본어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_portugal"
+                        android:id="@+id/rb_pt_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="葡萄牙语"
+                        android:text="포르투갈어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_ar"
+                        android:id="@+id/rb_ar_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="阿拉伯语"
+                        android:text="아랍어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_ru"
+                        android:id="@+id/rb_ru_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="俄语"
+                        android:text="러시아어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_cs"
+                        android:id="@+id/rb_cs_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="捷克"
+                        android:text="체코어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/rb_kk"
+                        android:id="@+id/rb_kk_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="哈萨克斯坦"
+                        android:text="카자흐어"
                         android:textColor="@color/app_color_53575e"
                         android:textSize="14sp" />
 
@@ -466,7 +466,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="显示拍照"
+                    android:text="사진 촬영 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -474,7 +474,7 @@
                     android:id="@+id/check_camera_services"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="拍照启用后台服务"
+                    android:text="사진 촬영 시 백그라운드 서비스 사용"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -482,7 +482,7 @@
                     android:id="@+id/check_only_camera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="只拍照"
+                    android:text="사진 촬영만"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -490,7 +490,7 @@
                     android:id="@+id/check_custom_camera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="自定义相机"
+                    android:text="사용자 정의 카메라"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -498,7 +498,7 @@
                     android:id="@+id/check_output"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="输出自定义目录"
+                    android:text="사용자 정의 폴더에 저장"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -506,7 +506,7 @@
                     android:id="@+id/check_only_dir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="只查询指定目录"
+                    android:text="지정된 폴더만 검색"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -515,7 +515,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="显示时间轴"
+                    android:text="타임라인 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -523,7 +523,7 @@
                     android:id="@+id/check_fast_select"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="长按触摸选择"
+                    android:text="길게 눌러 선택"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -531,7 +531,7 @@
                     android:id="@+id/check_empty_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="空结果可返回"
+                    android:text="결과 없을 때 닫기 허용"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -539,7 +539,7 @@
                     android:id="@+id/check_crop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="裁剪"
+                    android:text="자르기"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -548,7 +548,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="编辑"
+                    android:text="편집"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -557,16 +557,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="不可选显示蒙层"
+                    android:text="선택 불가 항목에 마스크 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
-
 
                 <CheckBox
                     android:id="@+id/check_lifecycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="界面生命周期监听"
+                    android:text="화면 생명주기 리스너"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -574,7 +573,7 @@
                     android:id="@+id/check_apply_permission"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="自定义权限申请"
+                    android:text="사용자 정의 권한 요청"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -582,7 +581,7 @@
                     android:id="@+id/check_original"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="原图"
+                    android:text="원본 사진"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -590,7 +589,7 @@
                     android:id="@+id/check_gif"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示gif"
+                    android:text="GIF 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -598,7 +597,7 @@
                     android:id="@+id/check_webp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示webp"
+                    android:text="WebP 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -606,7 +605,7 @@
                     android:id="@+id/check_bmp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示bmp"
+                    android:text="BMP 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -614,7 +613,7 @@
                     android:id="@+id/check_heic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示HEIC"
+                    android:text="HEIC 표시"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -623,7 +622,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="自定义选择限制"
+                    android:text="사용자 정의 선택 제한"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -631,7 +630,7 @@
                     android:id="@+id/check_auto_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="音视频自动播放"
+                    android:text="오디오/비디오 자동 재생"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -639,7 +638,7 @@
                     android:id="@+id/check_loop_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="音视频循环播放"
+                    android:text="오디오/비디오 반복 재생"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -647,7 +646,7 @@
                     android:id="@+id/check_pause_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="视频暂停续播"
+                    android:text="동영상 일시정지/이어보기"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -655,7 +654,7 @@
                     android:id="@+id/check_long_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="自定义长图预览"
+                    android:text="긴 이미지 미리보기 사용자 정의"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -664,7 +663,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="预览缩放特效"
+                    android:text="미리보기 확대/축소 효과"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -673,7 +672,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="预览点击可全屏"
+                    android:text="미리보기 클릭 시 전체화면"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -682,7 +681,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="外部预览可删除"
+                    android:text="외부 미리보기에서 삭제 가능"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -691,7 +690,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="外部预览可下载"
+                    android:text="외부 미리보기에서 다운로드 가능"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -700,7 +699,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="预览图片"
+                    android:text="사진 미리보기"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -709,7 +708,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="预览视频"
+                    android:text="동영상 미리보기"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -718,7 +717,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="预览音频"
+                    android:text="오디오 미리보기"
                     android:textColor="@color/ps_color_black"
                     android:textSize="14sp" />
 
@@ -743,6 +742,7 @@
             tools:alpha="1" />
 
         <View
+            android:id="@+id/view_mask"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignTop="@+id/recycler"

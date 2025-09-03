@@ -14,7 +14,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="全部"
+            android:text="모두"
             android:textColor="@color/app_color_53575e"
             android:textSize="14sp" />
 
@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="图片"
+            android:text="그림"
             android:textColor="@color/app_color_53575e"
             android:textSize="14sp" />
 
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="视频"
+            android:text="동영상"
             android:textColor="@color/app_color_53575e"
             android:textSize="14sp" />
 
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="音频"
+            android:text="오디오"
             android:textColor="@color/app_color_53575e"
             android:textSize="14sp" />
     </LinearLayout>
