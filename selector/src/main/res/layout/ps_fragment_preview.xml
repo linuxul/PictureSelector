@@ -8,11 +8,6 @@
 
     <!--Do not delete or change the View ID-->
 
-    <com.luck.picture.lib.magical.MagicalView
-        android:id="@+id/magical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ps_title_bar"
         android:layout_width="match_parent"
@@ -80,6 +75,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.luck.picture.lib.magical.MagicalView
+        android:id="@+id/magical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/ps_bottom_nar_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ps_title_bar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ps_bottom_nar_bar"

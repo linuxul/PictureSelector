@@ -79,7 +79,7 @@ private const val TAG_DESCRIPTION_VIEW = "TAG_DESCRIPTION_VIEW"
 class MainActivity : AppCompatActivity() {
     private var maxSelectNum: Int = 9
     private var maxSelectVideoNum: Int = 1
-    private var imageSpanCount: Int = 4
+    private var imageSpanCount: Int = 3
     private var pageSize: Int = SelectorConstant.DEFAULT_MAX_PAGE_SIZE
     private lateinit var mRecycler: RecyclerView
     private lateinit var mAdapter: GridImageAdapter
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
     private var mediaType: MediaType = MediaType.ALL
     private var selectionMode: SelectionMode = SelectionMode.MULTIPLE
     private var mData: MutableList<LocalMedia> = mutableListOf()
-    private var language: Language = Language.SYSTEM_LANGUAGE
+    private var language: Language = Language.KOREA
     private var soundPool = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
     private var needScaleBig = true
     private var needScaleSmall = false

@@ -288,10 +288,10 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
 
     open fun onPreviewItemClick(media: LocalMedia) {
         if (config.isPreviewFullScreenMode) {
-            previewFullScreenMode()
+            //previewFullScreenMode()
         } else {
             if (isHasMagicalEffect()) {
-                mMagicalView?.backToMin()
+                // mMagicalView?.backToMin()
             } else {
                 onBackPressed()
             }

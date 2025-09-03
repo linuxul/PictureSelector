@@ -65,8 +65,8 @@ open class SelectorNumberPreviewFragment : SelectorPreviewFragment() {
         super.initViews(view)
         rvGallery = view.findViewById(R.id.ps_rv_gallery)
         navBarViews.add(rvGallery)
-        rvGallery.visibility =
-            if (getSelectResult().isEmpty()) View.GONE else View.VISIBLE
+        rvGallery.visibility = View.GONE
+//            if (getSelectResult().isEmpty()) View.GONE else View.VISIBLE
     }
 
     override fun onCompleteClick(v: View) {
@@ -305,8 +305,8 @@ open class SelectorNumberPreviewFragment : SelectorPreviewFragment() {
                     }
                 }
                 if (!getPreviewWrap().isBottomPreview) {
-                    rvGallery.visibility =
-                        if (galleryAdapter?.selectResult?.isEmpty() == true) View.GONE else View.VISIBLE
+                    rvGallery.visibility = View.GONE
+                        //if (galleryAdapter?.selectResult?.isEmpty() == true) View.GONE else View.VISIBLE
                 }
                 onSelectResultSort()
             }
