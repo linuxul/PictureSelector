@@ -1,5 +1,5 @@
 <resources>
-    <string name="ps_camera_roll">전체</string>
+    <string name="ps_camera_roll">사진선택</string>
     <string name="ps_camera_roll_num">%1$s (%2$d)</string>
     <string name="ps_cancel">취소</string>
     <string name="ps_take_picture">촬영</string>
@@ -8,7 +8,7 @@
     <string name="ps_min_video_num">이미지는 최소한 %1$s 개 이상 선택되어야 합니다.</string>
     <string name="ps_message_video_max_num">동영상은 최대 %1$s 개 선택할 수 있습니다.</string>
     <string name="ps_message_audio_max_num">음성파일은 최대 %1$s 개 선택할 수 있습니다.</string>
-    <string name="ps_preview">미리보기</string>
+    <string name="ps_preview">불법으로 촬영한 이미지, 저작권 침해 등의 사진은 관련 법률 미치 이용약관에 따라 사전고지없이 삭제될 수 있습니다.</string>
     <string name="ps_please">잠시만 기다려 주세요.</string>
     <string name="ps_done_front_num">%1$d/%2$d 완료</string>
     <string name="ps_completed">완료</string>
@@ -52,8 +52,8 @@
     <string name="ps_original_image">원본 이미지 (%1$s)</string>
     <string name="ps_default_original_image">원본 이미지</string>
     <string name="ps_send">완료</string>
-    <string name="ps_send_num">완료(%1$d/%2$d)</string>
-    <string name="ps_preview_num">미리보기(%1$d)</string>
+    <string name="ps_send_num">%1$d 첨부</string>
+    <string name="ps_preview_num">불법으로 촬영한 이미지, 저작권 침해 등의 사진은 관련 법률 미치 이용약관에 따라 사전고지없이 삭제될 수 있습니다.</string>
     <string name="ps_select">확인</string>
     <string name="ps_data_exception">앨범 정보 이상 가져오기…</string>
     <string name="ps_choose_max_seconds">%1$ds 초 이내의 영상만 선택할 수 있습니다.</string>

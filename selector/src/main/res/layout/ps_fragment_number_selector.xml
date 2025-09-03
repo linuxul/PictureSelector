@@ -68,9 +68,9 @@
             app:layout_constraintTop_toBottomOf="@+id/ps_status_bar" />
 
         <LinearLayout
+            android:id="@+id/ps_ll_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ps_album_bg"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -101,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerInside"
+                android:visibility="gone"
                 android:src="@drawable/ps_ic_grey_arrow" />
         </LinearLayout>
 
@@ -148,7 +149,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ps_bottom_nar_bar"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:background="@color/ps_color_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

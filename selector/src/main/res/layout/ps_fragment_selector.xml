@@ -69,6 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ps_status_bar" />
 
         <LinearLayout
+            android:id="@+id/ps_ll_title"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center"
@@ -91,6 +92,7 @@
                 android:maxEms="6"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:text="@string/ps_camera_roll"
                 android:textColor="@color/ps_color_white"
                 android:textSize="18sp" />
@@ -100,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
+                android:visibility="gone"
                 android:src="@drawable/ps_ic_default_arrow" />
         </LinearLayout>
 
@@ -138,7 +141,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ps_bottom_nar_bar"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="70dp"
         android:background="@color/ps_color_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
