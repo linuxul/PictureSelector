@@ -445,43 +445,10 @@ class MainActivity : AppCompatActivity() {
                             1,
                             false
                         )
-//                        if (rbWhiteStyle.isChecked) {
-//                            gallery.inflateCustomLayout(
-//                                LayoutSource.SELECTOR_MAIN,
-//                                R.layout.ps_fragment_white_selector
-//                            )
-//                            gallery.inflateCustomLayout(
-//                                LayoutSource.SELECTOR_PREVIEW,
-//                                R.layout.ps_fragment_white_preview
-//                            )
-//                        }
                         gallery.isNewNumTemplate(true)
                         gallery.setStatusBarStyle(buildStatusBar())
                         gallery.setWindowAnimStyle(buildWindowAnim())
-//                        if (checkLongImage.isChecked) {
-//                            gallery.registry(
-//                                CustomPreviewImageHolder::class.java,
-//                                LayoutSource.PREVIEW_ITEM_IMAGE,
-//                                R.layout.ps_custom_preview_image
-//                            )
-//                        }
-                        when {
-                            rbExoPlayer.isChecked -> {
-                                gallery.registry(CustomPreviewExoVideoHolder::class.java)
-                            }
-                            rbIjkPlayer.isChecked -> {
-//                                gallery.registry(CustomPreviewIjkVideoHolder::class.java)
-                            }
-                            rbSystemPlayer.isChecked -> {
-//                                gallery.registry(CustomPreviewSystemVideoHolder::class.java)
-                            }
-                            else -> {
-//                                gallery.registry(PreviewVideoHolder::class.java)
-                            }
-                        }
-                        if (checkCustomCamera.isChecked) {
-//                            gallery.registry(CustomCameraActivity::class.java)
-                        }
+                        gallery.registry(CustomPreviewExoVideoHolder::class.java)
                         gallery.setOnAnimationAdapterWrapListener(object :
                             OnAnimationAdapterWrapListener {
                             override fun wrap(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>): BaseAnimationAdapter? {
@@ -508,66 +475,6 @@ class MainActivity : AppCompatActivity() {
                         gallery.setOnSelectFilterListener(geSelectFilterListener)
                         gallery.setOnPermissionDescriptionListener(getPermissionDescriptionListener)
                         gallery.setOnPermissionsApplyListener(null)
-                        if (checkOutput.isChecked) {
-//                            when (mediaType) {
-//                                MediaType.IMAGE -> {
-//                                    gallery.setOutputImageDir(getCustomImagePath())
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomImagePath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                                MediaType.VIDEO -> {
-//                                    gallery.setOutputVideoDir(getCustomVideoPath())
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomVideoPath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                                MediaType.AUDIO -> {
-//                                    gallery.setOutputAudioDir(getCustomAudioPath())
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomAudioPath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                                else -> {
-//                                    gallery.setOutputImageDir(getCustomAllPath())
-//                                    gallery.setOutputVideoDir(getCustomAllPath())
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomAllPath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                            }
-                        } else if (checkOnlyDir.isChecked) {
-//                            when (mediaType) {
-//                                MediaType.IMAGE -> {
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomImagePath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                                MediaType.VIDEO -> {
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomVideoPath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                                MediaType.AUDIO -> {
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomAudioPath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                                else -> {
-//                                    gallery.setQuerySandboxDir(
-//                                        getCustomAllPath(),
-//                                        checkOnlyDir.isChecked
-//                                    )
-//                                }
-//                            }
-                        }
                         gallery.setSelectionMode(SelectionMode.MULTIPLE)
                         gallery.isPreviewZoomEffect(
                             true,
@@ -593,17 +500,6 @@ class MainActivity : AppCompatActivity() {
                         gallery.isLoopAutoVideoPlay(false)
                         gallery.isVideoPauseResumePlay(false)
                         gallery.forResult(launcherResult)
-//                        when {
-//                            rbCallback.isChecked -> {
-//                                gallery.forResult(getResultCallbackListener)
-//                            }
-//                            rbLauncher.isChecked -> {
-//                                gallery.forResult(launcherResult)
-//                            }
-//                            rbRequestCode.isChecked -> {
-//                                gallery.forResult(SelectorConstant.CHOOSE_REQUEST)
-//                            }
-//                        }
                     }
                 }
             }
