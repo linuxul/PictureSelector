@@ -1005,7 +1005,7 @@ class MainActivity : AppCompatActivity() {
     private val geSelectFilterListener = object : OnSelectFilterListener {
         override fun onSelectFilter(context: Context, media: LocalMedia): Boolean {
             if (media.size > 10 * FileSizeUnitConstant.MB) {
-                ToastUtils.showMsg(context, "文件大于10M")
+                ToastUtils.showMsg(context, "파일 최대 크기가 10M 보다 큽니다.")
                 return true
             }
             // 选择的时候可以添加一些音效...
