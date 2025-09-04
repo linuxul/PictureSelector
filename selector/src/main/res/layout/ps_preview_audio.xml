@@ -13,6 +13,19 @@
         android:layout_marginBottom="15dp"
         tools:src="@drawable/ps_ic_audio_play_cover" />
 
+    <com.luck.picture.lib.widget.StyleTextView
+        android:id="@+id/ps_tv_check"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/ps_default_num_selector"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/ps_color_white"
+        android:textSize="12sp" />
+
     <TextView
         android:id="@+id/tv_audio_name"
         android:layout_width="wrap_content"
