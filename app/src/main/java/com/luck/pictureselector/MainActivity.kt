@@ -439,48 +439,48 @@ class MainActivity : AppCompatActivity() {
                     else -> {
                         val gallery = PictureSelector.create(this@MainActivity)
                             .openGallery(mediaType)
-                        gallery.setImageSpanCount(imageSpanCount)
+                        gallery.setImageSpanCount(3)
                         gallery.setMaxSelectNum(
-                            maxSelectNum,
-                            maxSelectVideoNum,
-                            checkMergeTotal.isChecked
+                            9,
+                            1,
+                            false
                         )
-                        if (rbWhiteStyle.isChecked) {
-                            gallery.inflateCustomLayout(
-                                LayoutSource.SELECTOR_MAIN,
-                                R.layout.ps_fragment_white_selector
-                            )
-                            gallery.inflateCustomLayout(
-                                LayoutSource.SELECTOR_PREVIEW,
-                                R.layout.ps_fragment_white_preview
-                            )
-                        }
-                        gallery.isNewNumTemplate(rbNumNewStyle.isChecked)
+//                        if (rbWhiteStyle.isChecked) {
+//                            gallery.inflateCustomLayout(
+//                                LayoutSource.SELECTOR_MAIN,
+//                                R.layout.ps_fragment_white_selector
+//                            )
+//                            gallery.inflateCustomLayout(
+//                                LayoutSource.SELECTOR_PREVIEW,
+//                                R.layout.ps_fragment_white_preview
+//                            )
+//                        }
+                        gallery.isNewNumTemplate(true)
                         gallery.setStatusBarStyle(buildStatusBar())
                         gallery.setWindowAnimStyle(buildWindowAnim())
-                        if (checkLongImage.isChecked) {
-                            gallery.registry(
-                                CustomPreviewImageHolder::class.java,
-                                LayoutSource.PREVIEW_ITEM_IMAGE,
-                                R.layout.ps_custom_preview_image
-                            )
-                        }
+//                        if (checkLongImage.isChecked) {
+//                            gallery.registry(
+//                                CustomPreviewImageHolder::class.java,
+//                                LayoutSource.PREVIEW_ITEM_IMAGE,
+//                                R.layout.ps_custom_preview_image
+//                            )
+//                        }
                         when {
                             rbExoPlayer.isChecked -> {
                                 gallery.registry(CustomPreviewExoVideoHolder::class.java)
                             }
                             rbIjkPlayer.isChecked -> {
-                                gallery.registry(CustomPreviewIjkVideoHolder::class.java)
+//                                gallery.registry(CustomPreviewIjkVideoHolder::class.java)
                             }
                             rbSystemPlayer.isChecked -> {
-                                gallery.registry(CustomPreviewSystemVideoHolder::class.java)
+//                                gallery.registry(CustomPreviewSystemVideoHolder::class.java)
                             }
                             else -> {
-                                gallery.registry(PreviewVideoHolder::class.java)
+//                                gallery.registry(PreviewVideoHolder::class.java)
                             }
                         }
                         if (checkCustomCamera.isChecked) {
-                            gallery.registry(CustomCameraActivity::class.java)
+//                            gallery.registry(CustomCameraActivity::class.java)
                         }
                         gallery.setOnAnimationAdapterWrapListener(object :
                             OnAnimationAdapterWrapListener {
@@ -498,111 +498,112 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
                         })
-                        gallery.setLanguage(language)
-                        gallery.setPageSize(pageSize)
+                        gallery.setLanguage(Language.KOREA)
+                        gallery.setPageSize(60)
                         gallery.setImageEngine(GlideEngine.create())
                         gallery.setMediaConverterEngine(MediaConverter.create())
-                        gallery.setCropEngine(if (checkCrop.isChecked) UCropEngine() else null)
-                        gallery.setOnEditorMediaListener(if (checkEditor.isChecked) getEditorMediaListener else null)
-                        gallery.setOnFragmentLifecycleListener(if (checkLifecycle.isChecked) getFragmentLifecycleListener else null)
-                        gallery.setOnSelectFilterListener(if (checkFilter.isChecked) geSelectFilterListener else null)
+                        gallery.setCropEngine(null)
+                        gallery.setOnEditorMediaListener(null)
+                        gallery.setOnFragmentLifecycleListener(null)
+                        gallery.setOnSelectFilterListener(geSelectFilterListener)
                         gallery.setOnPermissionDescriptionListener(getPermissionDescriptionListener)
-                        gallery.setOnPermissionsApplyListener(if (checkApplyPermission.isChecked) getPermissionsInterceptListener else null)
+                        gallery.setOnPermissionsApplyListener(null)
                         if (checkOutput.isChecked) {
-                            when (mediaType) {
-                                MediaType.IMAGE -> {
-                                    gallery.setOutputImageDir(getCustomImagePath())
-                                    gallery.setQuerySandboxDir(
-                                        getCustomImagePath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                                MediaType.VIDEO -> {
-                                    gallery.setOutputVideoDir(getCustomVideoPath())
-                                    gallery.setQuerySandboxDir(
-                                        getCustomVideoPath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                                MediaType.AUDIO -> {
-                                    gallery.setOutputAudioDir(getCustomAudioPath())
-                                    gallery.setQuerySandboxDir(
-                                        getCustomAudioPath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                                else -> {
-                                    gallery.setOutputImageDir(getCustomAllPath())
-                                    gallery.setOutputVideoDir(getCustomAllPath())
-                                    gallery.setQuerySandboxDir(
-                                        getCustomAllPath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                            }
+//                            when (mediaType) {
+//                                MediaType.IMAGE -> {
+//                                    gallery.setOutputImageDir(getCustomImagePath())
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomImagePath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                                MediaType.VIDEO -> {
+//                                    gallery.setOutputVideoDir(getCustomVideoPath())
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomVideoPath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                                MediaType.AUDIO -> {
+//                                    gallery.setOutputAudioDir(getCustomAudioPath())
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomAudioPath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                                else -> {
+//                                    gallery.setOutputImageDir(getCustomAllPath())
+//                                    gallery.setOutputVideoDir(getCustomAllPath())
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomAllPath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                            }
                         } else if (checkOnlyDir.isChecked) {
-                            when (mediaType) {
-                                MediaType.IMAGE -> {
-                                    gallery.setQuerySandboxDir(
-                                        getCustomImagePath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                                MediaType.VIDEO -> {
-                                    gallery.setQuerySandboxDir(
-                                        getCustomVideoPath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                                MediaType.AUDIO -> {
-                                    gallery.setQuerySandboxDir(
-                                        getCustomAudioPath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                                else -> {
-                                    gallery.setQuerySandboxDir(
-                                        getCustomAllPath(),
-                                        checkOnlyDir.isChecked
-                                    )
-                                }
-                            }
+//                            when (mediaType) {
+//                                MediaType.IMAGE -> {
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomImagePath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                                MediaType.VIDEO -> {
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomVideoPath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                                MediaType.AUDIO -> {
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomAudioPath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                                else -> {
+//                                    gallery.setQuerySandboxDir(
+//                                        getCustomAllPath(),
+//                                        checkOnlyDir.isChecked
+//                                    )
+//                                }
+//                            }
                         }
-                        gallery.setSelectionMode(selectionMode)
+                        gallery.setSelectionMode(SelectionMode.MULTIPLE)
                         gallery.isPreviewZoomEffect(
-                            checkPreviewEffect.isChecked,
-                            checkPreviewFull.isChecked
+                            true,
+                            true
                         )
-                        gallery.isGif(checkGif.isChecked)
-                        gallery.isWebp(checkWebp.isChecked)
+                        gallery.isGif(true)
+                        gallery.isWebp(true)
                         gallery.isBmp(checkBmp.isChecked)
                         gallery.isHeic(checkHeic.isChecked)
                         gallery.setSelectedData(mAdapter.getData())
-                        gallery.isCameraForegroundService(checkCameraServices.isChecked)
+                        gallery.isCameraForegroundService(false)
                         gallery.setOnRecordAudioListener(getRecordAudioListener)
-                        gallery.isDisplayCamera(checkDisplayCamera.isChecked)
-                        gallery.isFastSlidingSelect(checkFastSelect.isChecked)
-                        gallery.isDisplayTimeAxis(checkTimeAxis.isChecked)
-                        gallery.isEmptyResultBack(checkEmptyBack.isChecked)
-                        gallery.isOriginalControl(checkOriginal.isChecked)
-                        gallery.isMaxSelectEnabledMask(checkEnabledMask.isChecked)
-                        gallery.isPreviewImage(checkPreviewImage.isChecked)
-                        gallery.isPreviewVideo(checkPreviewVideo.isChecked)
-                        gallery.isPreviewAudio(checkPreviewAudio.isChecked)
-                        gallery.isAutoPlay(checkAutoVideo.isChecked)
-                        gallery.isLoopAutoVideoPlay(checkLoopVideo.isChecked)
-                        gallery.isVideoPauseResumePlay(checkPauseVideo.isChecked)
-                        when {
-                            rbCallback.isChecked -> {
-                                gallery.forResult(getResultCallbackListener)
-                            }
-                            rbLauncher.isChecked -> {
-                                gallery.forResult(launcherResult)
-                            }
-                            rbRequestCode.isChecked -> {
-                                gallery.forResult(SelectorConstant.CHOOSE_REQUEST)
-                            }
-                        }
+                        gallery.isDisplayCamera(false)
+                        gallery.isFastSlidingSelect(false)
+                        gallery.isDisplayTimeAxis(true)
+                        gallery.isEmptyResultBack(false)
+                        gallery.isOriginalControl(false)
+                        gallery.isMaxSelectEnabledMask(true)
+                        gallery.isPreviewImage(true)
+                        gallery.isPreviewVideo(true)
+                        gallery.isPreviewAudio(false)
+                        gallery.isAutoPlay(false)
+                        gallery.isLoopAutoVideoPlay(false)
+                        gallery.isVideoPauseResumePlay(false)
+                        gallery.forResult(launcherResult)
+//                        when {
+//                            rbCallback.isChecked -> {
+//                                gallery.forResult(getResultCallbackListener)
+//                            }
+//                            rbLauncher.isChecked -> {
+//                                gallery.forResult(launcherResult)
+//                            }
+//                            rbRequestCode.isChecked -> {
+//                                gallery.forResult(SelectorConstant.CHOOSE_REQUEST)
+//                            }
+//                        }
                     }
                 }
             }
