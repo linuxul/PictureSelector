@@ -98,6 +98,7 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         holder.setOnLongClickListener(mLongClickListener)
         holder.setOnItemClickListener(mOnItemClickListener)
         holder.bindData(mData[position], position)
+        holder.tvSelectView.setBackgroundResource(R.drawable.ps_default_num_selector)
         notifySelectNumberStyle(holder, mData[position])
     }
 
@@ -189,8 +190,9 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         val position = selectResult.indexOf(currentMedia)
         if (position >= 0) {
             holder.tvSelectView.text = "${position + 1}"
+            holder.tvSelectView.isSelected = true
         } else {
-            holder.tvSelectView.text = "0"
+            holder.tvSelectView.isSelected = false
         }
     }
 

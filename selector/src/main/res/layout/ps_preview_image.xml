@@ -10,14 +10,14 @@
 
     <com.luck.picture.lib.widget.StyleTextView
         android:id="@+id/ps_tv_check"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="top|right"
         android:layout_marginTop="100dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/ps_preview_checkbox_selector"
+        android:background="@drawable/ps_default_num_selector"
         android:gravity="center"
-        android:text="1"
+        android:text=""
         android:textColor="@color/ps_color_white"
         android:textSize="12sp" />
 
