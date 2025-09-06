@@ -10,7 +10,7 @@ class ListenerInfo {
     var onConfirmListener: OnConfirmListener? = null
     var onEditorMediaListener: OnEditorMediaListener? = null
     var onQueryFilterListener: OnQueryFilterListener? = null
-    var onRecordAudioListener: OnRecordAudioListener? = null
+//    var onRecordAudioListener: OnRecordAudioListener? = null
     var onCustomCameraListener: OnCustomCameraListener? = null
     var onSelectFilterListener: OnSelectFilterListener? = null
     var onReplaceFileNameListener: OnReplaceFileNameListener? = null
@@ -26,7 +26,7 @@ class ListenerInfo {
 
     fun destroy() {
         this.onEditorMediaListener = null
-        this.onRecordAudioListener = null
+//        this.onRecordAudioListener = null
         this.onQueryFilterListener = null
         this.onSelectFilterListener = null
         this.onCustomCameraListener = null

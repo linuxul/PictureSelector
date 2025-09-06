@@ -52,9 +52,9 @@ object MediaUtils {
         return url != null && url.lowercase(Locale.getDefault()).endsWith(".mp4")
     }
 
-    fun hasMimeTypeOfAudio(mimeType: String?): Boolean {
-        return mimeType != null && mimeType.startsWith("audio")
-    }
+//    fun hasMimeTypeOfAudio(mimeType: String?): Boolean {
+//        return mimeType != null && mimeType.startsWith("audio")
+//    }
 
     fun hasMimeTypeOfUnknown(mimeType: String?): Boolean {
         return mimeType != null && mimeType.startsWith("image/*")
@@ -196,9 +196,9 @@ object MediaUtils {
             hasMimeTypeOfVideo(mimeType) -> {
                 MediaStore.Video.Media.EXTERNAL_CONTENT_URI
             }
-            hasMimeTypeOfAudio(mimeType) -> {
-                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-            }
+//            hasMimeTypeOfAudio(mimeType) -> {
+//                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+//            }
             else -> {
                 MediaStore.Files.getContentUri("external")
             }
@@ -321,18 +321,6 @@ object MediaUtils {
                             mediaInfo.height = height
                         }
                     }
-
-                } else if (hasMimeTypeOfAudio(mimeType)) {
-                    val retriever = MediaMetadataRetriever()
-                    if (isContent(path)) {
-                        retriever.setDataSource(context, Uri.parse(path))
-                    } else {
-                        retriever.setDataSource(path)
-                    }
-                    retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-                        ?.toLong()?.let { duration ->
-                            mediaInfo.duration = duration
-                        }
                 }
                 it.resume(mediaInfo)
             }

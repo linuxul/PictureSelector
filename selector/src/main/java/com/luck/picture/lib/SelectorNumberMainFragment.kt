@@ -33,13 +33,13 @@ class SelectorNumberMainFragment : SelectorMainFragment() {
         if (!selectResult.contains(change)) {
             val currentItem = mAdapter.getData().indexOf(change)
             if (currentItem >= 0) {
-                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) currentItem + 1 else currentItem)
+                mAdapter.notifyItemChanged(currentItem)
             }
         }
         selectResult.forEach { media ->
             val position = mAdapter.getData().indexOf(media)
             if (position >= 0) {
-                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) position + 1 else position)
+                mAdapter.notifyItemChanged(position)
             }
         }
     }

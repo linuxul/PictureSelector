@@ -109,9 +109,6 @@ open class SelectorExternalPreviewFragment : SelectorPreviewFragment() {
                 MediaUtils.hasMimeTypeOfVideo(mimeType) -> {
                     getString(R.string.ps_prompt_video_content)
                 }
-                MediaUtils.hasMimeTypeOfAudio(mimeType) -> {
-                    getString(R.string.ps_prompt_audio_content);
-                }
                 else -> {
                     getString(R.string.ps_prompt_image_content);
                 }
@@ -204,36 +201,6 @@ open class SelectorExternalPreviewFragment : SelectorPreviewFragment() {
                 } else {
                     context.contentResolver.insert(
                         MediaStore.Video.Media.INTERNAL_CONTENT_URI,
-                        values
-                    )
-                }
-            }
-            MediaUtils.hasMimeTypeOfAudio(mimeType) -> {
-                val postfix = MediaUtils.getPostfix(context, path, "amr")
-                val fileName = "${FileUtils.createFileName("AUD")}.$postfix"
-                values.put(MediaStore.Audio.Media.DISPLAY_NAME, fileName)
-                values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/$postfix")
-                if (SdkVersionUtils.isQ()) {
-                    values.put(MediaStore.Audio.Media.DATE_TAKEN, System.currentTimeMillis())
-                    values.put(MediaStore.Audio.Media.RELATIVE_PATH, Environment.DIRECTORY_MUSIC)
-                } else {
-                    val dir = if (TextUtils.equals(
-                            Environment.getExternalStorageState(),
-                            Environment.MEDIA_MOUNTED
-                        )
-                    ) Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_MUSIC
-                    ) else context.getExternalFilesDir(Environment.DIRECTORY_MUSIC)
-                    values.put(MediaStore.MediaColumns.DATA, "${dir}${File.separator}${fileName}")
-                }
-                return if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-                    context.contentResolver.insert(
-                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                        values
-                    )
-                } else {
-                    context.contentResolver.insert(
-                        MediaStore.Audio.Media.INTERNAL_CONTENT_URI,
                         values
                     )
                 }

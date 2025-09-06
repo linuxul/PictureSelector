@@ -98,9 +98,9 @@ object PermissionChecker {
                 MediaType.VIDEO -> {
                     isCheckReadVideo(context)
                 }
-                MediaType.AUDIO -> {
-                    isCheckReadAudio(context)
-                }
+//                MediaType.AUDIO -> {
+//                    isCheckReadAudio(context)
+//                }
                 else -> {
                     isCheckReadImages(context) && isCheckReadVideo(
                         context
@@ -137,13 +137,13 @@ object PermissionChecker {
     /**
      * 检查读取音频权限是否存在
      */
-    @RequiresApi(api = 33)
-    fun isCheckReadAudio(context: Context): Boolean {
-        return checkSelfPermission(
-            context,
-            arrayOf(READ_MEDIA_AUDIO)
-        )
-    }
+//    @RequiresApi(api = 33)
+//    fun isCheckReadAudio(context: Context): Boolean {
+//        return checkSelfPermission(
+//            context,
+//            arrayOf(READ_MEDIA_AUDIO)
+//        )
+//    }
 
 
     private fun isCheckReadExternalStorage(context: Context): Boolean {
@@ -181,11 +181,6 @@ object PermissionChecker {
             } else if (mediaType == MediaType.VIDEO) {
                 if (targetSdkVersion >= SdkVersionUtils.TIRAMISU) arrayOf(READ_MEDIA_VIDEO) else arrayOf(
                     READ_MEDIA_VIDEO,
-                    READ_EXTERNAL_STORAGE
-                )
-            } else if (mediaType == MediaType.AUDIO) {
-                if (targetSdkVersion >= SdkVersionUtils.TIRAMISU) arrayOf(READ_MEDIA_AUDIO) else arrayOf(
-                    READ_MEDIA_AUDIO,
                     READ_EXTERNAL_STORAGE
                 )
             } else {

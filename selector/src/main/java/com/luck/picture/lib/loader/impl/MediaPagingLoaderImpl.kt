@@ -52,9 +52,6 @@ open class MediaPagingLoaderImpl(val application: Application) : MediaLoader() {
             MediaType.VIDEO -> { // query the video
                 "$MEDIA_TYPE=?${getVideoMimeTypeCondition()} AND $duration"
             }
-            MediaType.AUDIO -> { // query the audio
-                "$MEDIA_TYPE=?${getAudioMimeTypeCondition()} AND $duration"
-            }
         }
     }
 
@@ -83,13 +80,6 @@ open class MediaPagingLoaderImpl(val application: Application) : MediaLoader() {
                     "($MEDIA_TYPE=?${getVideoMimeTypeCondition()} AND $duration) AND $fileSize AND $BUCKET_ID=?"
                 }
             }
-            MediaType.AUDIO -> { // query the audio
-                return if (bucketId == SelectorConstant.DEFAULT_ALL_BUCKET_ID) {
-                    "($MEDIA_TYPE=?${getAudioMimeTypeCondition()} AND $duration) AND $fileSize"
-                } else {
-                    "($MEDIA_TYPE=?${getAudioMimeTypeCondition()} AND $duration) AND $fileSize AND $BUCKET_ID=?"
-                }
-            }
         }
     }
 
@@ -106,9 +96,6 @@ open class MediaPagingLoaderImpl(val application: Application) : MediaLoader() {
             }
             MediaType.VIDEO -> {
                 return arrayOf(MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO.toString())
-            }
-            MediaType.AUDIO -> {
-                return arrayOf(MediaStore.Files.FileColumns.MEDIA_TYPE_AUDIO.toString())
             }
         }
     }
@@ -216,8 +203,7 @@ open class MediaPagingLoaderImpl(val application: Application) : MediaLoader() {
                     // create all media album
                     val allMediaAlbum = LocalMediaAlbum()
                     val bucketDisplayName =
-                        config.defaultAlbumName ?: if (config.mediaType == MediaType.AUDIO)
-                            application.getString(R.string.ps_all_audio) else application.getString(
+                        config.defaultAlbumName ?: application.getString(
                             R.string.ps_camera_roll
                         )
                     allMediaAlbum.bucketDisplayName = bucketDisplayName
@@ -319,10 +305,10 @@ open class MediaPagingLoaderImpl(val application: Application) : MediaLoader() {
                 if (!MediaUtils.hasMimeTypeOfVideo(mimeType)) {
                     return@continuing
                 }
-            } else if (config.mediaType == MediaType.AUDIO) {
-                if (!MediaUtils.hasMimeTypeOfAudio(mimeType)) {
-                    return@continuing
-                }
+//            } else if (config.mediaType == MediaType.AUDIO) {
+//                if (!MediaUtils.hasMimeTypeOfAudio(mimeType)) {
+//                    return@continuing
+//                }
             }
             if (!config.isGif) {
                 if (MediaUtils.isHasGif(mimeType)) {

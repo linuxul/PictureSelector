@@ -400,12 +400,12 @@ abstract class BaseSelectorFragment : Fragment() {
                             config.minSelectNum.toString()
                         )
                     }
-                    MediaType.AUDIO -> {
-                        getString(
-                            R.string.ps_min_audio_num,
-                            config.minSelectNum.toString()
-                        )
-                    }
+//                    MediaType.AUDIO -> {
+//                        getString(
+//                            R.string.ps_min_audio_num,
+//                            config.minSelectNum.toString()
+//                        )
+//                    }
                     else -> {
                         getString(
                             R.string.ps_min_img_num,
@@ -439,9 +439,7 @@ abstract class BaseSelectorFragment : Fragment() {
      * Activate camera intent based on [MediaType]
      */
     open fun startCameraAction(mode: MediaType) {
-        if (mode == MediaType.AUDIO) {
-            soundRecording()
-        } else {
+         {
             val permission = arrayOf(Manifest.permission.CAMERA)
             if (PermissionChecker.checkSelfPermission(requireContext(), permission)) {
                 if (mode == MediaType.VIDEO) {
@@ -475,37 +473,37 @@ abstract class BaseSelectorFragment : Fragment() {
         }
     }
 
-    /**
-     * sound recording
-     */
-    open fun soundRecording() {
-        val context = requireContext()
-        val outputDir = config.audioOutputDir
-        if (TextUtils.isEmpty(outputDir)) {
-        } else {
-            // Use custom storage path
-            val defaultFileName = "${FileUtils.createFileName("AUD")}.amr"
-            val applyFileNameListener = config.mListenerInfo.onReplaceFileNameListener
-            val fileName = applyFileNameListener?.apply(defaultFileName) ?: defaultFileName
-            viewModel.outputUri = Uri.fromFile(File(outputDir, fileName))
-        }
-        val soundCaptureComponent = config.registry.get(SoundCaptureComponent::class.java)
-        if (soundCaptureComponent.isAssignableFrom(SoundCaptureComponent::class.java)) {
-            val onRecordAudioListener = config.mListenerInfo.onRecordAudioListener
-            if (onRecordAudioListener != null) {
-                ForegroundService.startService(context, config.isForegroundService)
-                onRecordAudioListener.onRecordAudio(this, SelectorConstant.REQUEST_CAMERA)
-            } else {
-                throw NullPointerException("Please implement the ${OnRecordAudioListener::class.java.simpleName} interface to achieve recording functionality")
-            }
-        } else {
-            val soundCaptureActivity = factory.create(soundCaptureComponent)
-            val intent = Intent(context, soundCaptureActivity::class.java)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, viewModel.outputUri)
-            startActivityForResult(intent, SelectorConstant.REQUEST_CAMERA)
-            ForegroundService.startService(context, config.isForegroundService)
-        }
-    }
+//    /**
+//     * sound recording
+//     */
+//    open fun soundRecording() {
+//        val context = requireContext()
+//        val outputDir = config.audioOutputDir
+//        if (TextUtils.isEmpty(outputDir)) {
+//        } else {
+//            // Use custom storage path
+//            val defaultFileName = "${FileUtils.createFileName("AUD")}.amr"
+//            val applyFileNameListener = config.mListenerInfo.onReplaceFileNameListener
+//            val fileName = applyFileNameListener?.apply(defaultFileName) ?: defaultFileName
+//            viewModel.outputUri = Uri.fromFile(File(outputDir, fileName))
+//        }
+//        val soundCaptureComponent = config.registry.get(SoundCaptureComponent::class.java)
+//        if (soundCaptureComponent.isAssignableFrom(SoundCaptureComponent::class.java)) {
+//            val onRecordAudioListener = config.mListenerInfo.onRecordAudioListener
+//            if (onRecordAudioListener != null) {
+//                ForegroundService.startService(context, config.isForegroundService)
+//                onRecordAudioListener.onRecordAudio(this, SelectorConstant.REQUEST_CAMERA)
+//            } else {
+//                throw NullPointerException("Please implement the ${OnRecordAudioListener::class.java.simpleName} interface to achieve recording functionality")
+//            }
+//        } else {
+//            val soundCaptureActivity = factory.create(soundCaptureComponent)
+//            val intent = Intent(context, soundCaptureActivity::class.java)
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, viewModel.outputUri)
+//            startActivityForResult(intent, SelectorConstant.REQUEST_CAMERA)
+//            ForegroundService.startService(context, config.isForegroundService)
+//        }
+//    }
 
     /**
      * System camera takes pictures
@@ -797,17 +795,6 @@ abstract class BaseSelectorFragment : Fragment() {
                     return SelectedState.INVALID
                 }
             }
-            MediaType.AUDIO -> {
-                if (count >= config.totalCount) {
-                    showTipsDialog(
-                        getString(
-                            R.string.ps_message_audio_max_num,
-                            config.totalCount.toString()
-                        )
-                    )
-                    return SelectedState.INVALID
-                }
-            }
         }
         return SelectedState.SUCCESS
     }
@@ -910,11 +897,7 @@ abstract class BaseSelectorFragment : Fragment() {
                     ?: viewModel.outputUri
                 }
                 if (outputUri != null) {
-                    if (config.mediaType == MediaType.AUDIO && schemeFile && data?.data != null) {
-                        copyAudioUriToFile(data.data!!)
-                    } else {
-                        analysisCameraData(outputUri)
-                    }
+                    analysisCameraData(outputUri)
                 } else {
                     throw IllegalStateException("Camera output uri is empty")
                 }

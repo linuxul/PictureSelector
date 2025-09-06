@@ -9,5 +9,5 @@ enum class MediaType {
     ALL,
     IMAGE,
     VIDEO,
-    AUDIO
+//    AUDIO
 }

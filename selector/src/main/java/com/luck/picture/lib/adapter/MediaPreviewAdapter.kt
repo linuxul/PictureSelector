@@ -85,7 +85,7 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         val inflater = LayoutInflater.from(parent.context)
         val holder: BasePreviewMediaHolder = when (viewType) {
             MediaAdapterType.TYPE_VIDEO -> onCreateVideoViewHolder(inflater, parent)
-            MediaAdapterType.TYPE_AUDIO -> onCreateAudioViewHolder(inflater, parent)
+//            MediaAdapterType.TYPE_AUDIO -> onCreateAudioViewHolder(inflater, parent)
             else -> onCreateImageViewHolder(inflater, parent)
         }
         return holder
@@ -110,8 +110,8 @@ open class MediaPreviewAdapter : RecyclerView.Adapter<BasePreviewMediaHolder>() 
         val mimeType = mData[position].mimeType
         if (MediaUtils.hasMimeTypeOfVideo(mimeType)) {
             return MediaAdapterType.TYPE_VIDEO
-        } else if (MediaUtils.hasMimeTypeOfAudio(mimeType)) {
-            return MediaAdapterType.TYPE_AUDIO
+//        } else if (MediaUtils.hasMimeTypeOfAudio(mimeType)) {
+//            return MediaAdapterType.TYPE_AUDIO
         }
         return MediaAdapterType.TYPE_IMAGE
     }

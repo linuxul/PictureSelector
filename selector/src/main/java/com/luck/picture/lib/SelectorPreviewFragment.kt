@@ -105,8 +105,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
     private fun isHasMagicalEffect(): Boolean {
         val source = getPreviewWrap().source
         val media = if (source.size > viewPager.currentItem) source[viewPager.currentItem] else null
-        return !MediaUtils.hasMimeTypeOfAudio(media?.mimeType)
-                && !getPreviewWrap().isBottomPreview
+        return !getPreviewWrap().isBottomPreview
                 && config.isPreviewZoomEffect
     }
 
@@ -229,7 +228,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
     open fun initNavbarBar() {
         val media = getPreviewWrap().source[getPreviewWrap().position]
         mTvEditor?.visibility =
-            if (!MediaUtils.hasMimeTypeOfAudio(media.mimeType) && config.mListenerInfo.onEditorMediaListener != null) View.VISIBLE else View.GONE
+            if (config.mListenerInfo.onEditorMediaListener != null) View.VISIBLE else View.GONE
         mTvEditor?.setOnClickListener {
             onEditorClick(it)
         }
@@ -449,7 +448,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
             val height = mediaRealSize[1]
             mMagicalView?.changeRealScreenHeight(width, height, false)
             val viewParams =
-                RecycleItemViewParams.getItemViewParams(if (getPreviewWrap().isDisplayCamera) viewPager.currentItem + 1 else viewPager.currentItem)
+                RecycleItemViewParams.getItemViewParams(viewPager.currentItem)
             if (viewParams == null || width == 0 && height == 0) {
                 mMagicalView?.startNormal(width, height, false)
                 mMagicalView?.setBackgroundAlpha(1F)
@@ -483,7 +482,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
                 val height = mediaSize[1]
                 mMagicalView?.changeRealScreenHeight(width, height, true)
                 val viewParams =
-                    RecycleItemViewParams.getItemViewParams(if (getPreviewWrap().isDisplayCamera) position + 1 else position)
+                    RecycleItemViewParams.getItemViewParams(position)
                 if (viewParams == null || width == 0 || height == 0) {
                     mMagicalView?.setViewParams(0, 0, 0, 0, width, height)
                 } else {
@@ -507,9 +506,9 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
         if (MediaUtils.isLongImage(realWidth, realHeight)) {
             return intArrayOf(screenWidth, screenHeight)
         }
-        if (MediaUtils.hasMimeTypeOfAudio(media.mimeType)) {
-            return intArrayOf(realWidth, realHeight)
-        }
+//        if (MediaUtils.hasMimeTypeOfAudio(media.mimeType)) {
+//            return intArrayOf(realWidth, realHeight)
+//        }
         if ((realWidth <= 0 || realHeight <= 0) || (realWidth > realHeight)) {
             withContext(Dispatchers.IO) {
                 media.absolutePath?.let { realPath ->
@@ -643,21 +642,24 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
         } else {
             mMagicalView?.setBackgroundAlpha(1.0F)
         }
-        if (config.mediaType == MediaType.AUDIO || (getPreviewWrap().source.isNotEmpty() && MediaUtils.hasMimeTypeOfAudio(
-                getPreviewWrap().source.first().mimeType
-            ))
-        ) {
-            mMagicalView?.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.ps_color_white
-                )
-            )
-        } else {
-            mMagicalView?.setBackgroundColor(
-                ContextCompat.getColor(requireContext(), R.color.ps_color_black)
-            )
-        }
+//        if ((getPreviewWrap().source.isNotEmpty() && MediaUtils.hasMimeTypeOfAudio(
+//                getPreviewWrap().source.first().mimeType
+//            ))
+//        ) {
+//            mMagicalView?.setBackgroundColor(
+//                ContextCompat.getColor(
+//                    requireContext(),
+//                    R.color.ps_color_white
+//                )
+//            )
+//        } else {
+//            mMagicalView?.setBackgroundColor(
+//                ContextCompat.getColor(requireContext(), R.color.ps_color_black)
+//            )
+//        }
+        mMagicalView?.setBackgroundColor(
+            ContextCompat.getColor(requireContext(), R.color.ps_color_black)
+        )
 
         mMagicalView?.setOnMagicalViewListener(object : OnMagicalViewListener {
             override fun onBeginBackMinAnim() {
@@ -740,8 +742,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
     open fun onMojitoBeginBackMinFinish(isResetSize: Boolean) {
         val itemViewParams =
             RecycleItemViewParams.getItemViewParams(
-                if (getPreviewWrap().isDisplayCamera) viewPager.currentItem + 1
-                else viewPager.currentItem
+                viewPager.currentItem
             ) ?: return
         val currentHolder = mAdapter.getCurrentViewHolder(viewPager.currentItem) ?: return
         val layoutParams = currentHolder.imageCover.layoutParams
@@ -839,7 +840,7 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
 
     open fun changeViewParams(size: IntArray) {
         val viewParams =
-            RecycleItemViewParams.getItemViewParams(if (getPreviewWrap().isDisplayCamera) viewPager.currentItem + 1 else viewPager.currentItem)
+            RecycleItemViewParams.getItemViewParams(viewPager.currentItem)
         if (viewParams == null || size[0] == 0 || size[1] == 0) {
             mMagicalView?.setViewParams(0, 0, 0, 0, size[0], size[1])
             mMagicalView?.resetStartNormal(size[0], size[1], false)

@@ -108,13 +108,13 @@ class SelectionCameraModel constructor(
         return this
     }
 
-    /**
-     * Custom recording callback listening
-     */
-    fun setOnRecordAudioListener(l: OnRecordAudioListener?): SelectionCameraModel {
-        this.config.mListenerInfo.onRecordAudioListener = l
-        return this
-    }
+//    /**
+//     * Custom recording callback listening
+//     */
+//    fun setOnRecordAudioListener(l: OnRecordAudioListener?): SelectionCameraModel {
+//        this.config.mListenerInfo.onRecordAudioListener = l
+//        return this
+//    }
 
     /**
      * Custom camera callback listening

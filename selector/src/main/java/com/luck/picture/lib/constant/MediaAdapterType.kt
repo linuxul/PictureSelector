@@ -6,8 +6,8 @@ package com.luck.picture.lib.constant
  * @describe：MediaAdapterType
  */
 object MediaAdapterType {
-    const val TYPE_CAMERA = -1
+//    const val TYPE_CAMERA = -1
     const val TYPE_IMAGE = 1
     const val TYPE_VIDEO = 2
-    const val TYPE_AUDIO = 3
+//    const val TYPE_AUDIO = 3
 }

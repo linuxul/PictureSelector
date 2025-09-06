@@ -62,7 +62,7 @@ class SelectorConfig {
     var isPreviewZoomEffect = false
     var isEnablePreviewImage = true
     var isEnablePreviewVideo = true
-    var isEnablePreviewAudio = true
+//    var isEnablePreviewAudio = true
     var isMaxSelectEnabledMask = false
     var isPreviewFullScreenMode = false
     var previewWrap = PreviewDataWrap()
@@ -130,7 +130,7 @@ class SelectorConfig {
         this.isAllWithImageVideo = false
         this.isEnablePreviewImage = true
         this.isEnablePreviewVideo = true
-        this.isEnablePreviewAudio = true
+//        this.isEnablePreviewAudio = true
         this.isOnlySandboxDir = false
         this.isOriginalControl = false
         this.isPreviewZoomEffect = false

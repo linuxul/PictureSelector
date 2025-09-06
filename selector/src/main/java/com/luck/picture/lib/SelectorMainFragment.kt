@@ -148,10 +148,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
     }
 
     open fun setDataEmpty() {
-        mTvDataEmpty?.text =
-            if (config.mediaType == MediaType.AUDIO) getString(R.string.ps_audio_empty) else getString(
-                R.string.ps_empty
-            )
+        mTvDataEmpty?.text = getString(R.string.ps_empty)
     }
 
     open fun onMergeSelectedSource() {
@@ -166,7 +163,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
         globalViewMode.getEditorLiveData().observe(viewLifecycleOwner) { media ->
             val position = mAdapter.getData().indexOf(media)
             if (position >= 0) {
-                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) position + 1 else position)
+                mAdapter.notifyItemChanged(position)
             }
         }
         globalViewMode.getOriginalLiveData().observe(viewLifecycleOwner) { isOriginal ->
@@ -175,13 +172,13 @@ open class SelectorMainFragment : BaseSelectorFragment() {
         globalViewMode.getSelectResultLiveData().observe(viewLifecycleOwner) { media ->
             val position = mAdapter.getData().indexOf(media)
             if (checkNotifyStrategy(getSelectResult().indexOf(media) != -1)) {
-                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) position + 1 else position)
+                mAdapter.notifyItemChanged(position)
                 Looper.myQueue().addIdleHandler {
                     mAdapter.notifyDataSetChanged()
                     return@addIdleHandler false
                 }
             } else {
-                mAdapter.notifyItemChanged(if (mAdapter.isDisplayCamera()) position + 1 else position)
+                mAdapter.notifyItemChanged(position)
             }
             // update selected tag
             mAlbumWindow.notifyChangedSelectTag(getSelectResult())
@@ -336,7 +333,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
         }
         // Update current album
         setCurrentAlbum(data)
-        mAdapter.setDisplayCamera(isDisplayCamera())
+//        mAdapter.setDisplayCamera(isDisplayCamera())
         setDefaultAlbumTitle(data.bucketDisplayName)
         if (data.cachePage > 0 && data.source.isNotEmpty()) {
             // Album already has cached data，Start loading from cached page numbers
@@ -349,7 +346,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
             viewModel.loadMedia(data.bucketId)
         }
         if (config.isFastSlidingSelect) {
-            mDragSelectTouchListener?.setRecyclerViewHeaderCount(if (mAdapter.isDisplayCamera()) 1 else 0)
+            mDragSelectTouchListener?.setRecyclerViewHeaderCount(0)
         }
     }
 
@@ -470,7 +467,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
     open fun initMediaAdapter() {
         initRecyclerConfig(mRecycler)
         mAdapter = createMediaAdapter()
-        mAdapter.setDisplayCamera(isDisplayCamera())
+//        mAdapter.setDisplayCamera(isDisplayCamera())
         mRecycler.adapter =
             config.mListenerInfo.onAnimationAdapterWrapListener?.wrap(mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
                 ?: mAdapter
@@ -633,7 +630,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
                     }
                 })
             mDragSelectTouchListener = SlideSelectTouchListener()
-                .setRecyclerViewHeaderCount(if (mAdapter.isDisplayCamera()) 1 else 0)
+                .setRecyclerViewHeaderCount(0)
                 .withSelectListener(slideSelectionHandler)
             mDragSelectTouchListener?.let {
                 mRecycler.addOnItemTouchListener(it)
@@ -771,8 +768,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
      */
     open fun setDefaultAlbumTitle(title: String?) {
         mTvTitle?.text =
-            config.defaultAlbumName ?: title ?: if (config.mediaType == MediaType.AUDIO)
-                getString(R.string.ps_all_audio) else getString(
+            config.defaultAlbumName ?: title ?: getString(
                 R.string.ps_camera_roll
             )
     }
@@ -896,7 +892,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
             this.position = position
             this.bucketId = getCurrentAlbum().bucketId
             this.isBottomPreview = isBottomPreview
-            this.isDisplayCamera = mAdapter.isDisplayCamera()
+//            this.isDisplayCamera = mAdapter.isDisplayCamera()
             if (config.isOnlySandboxDir) {
                 this.totalCount = source.size
             } else {
@@ -948,8 +944,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
             mAlbumWindow.getAlbum(SelectorConstant.DEFAULT_ALL_BUCKET_ID) ?: LocalMediaAlbum()
         allMediaAlbum.bucketId = SelectorConstant.DEFAULT_ALL_BUCKET_ID
         val bucketDisplayName =
-            config.defaultAlbumName ?: if (MediaUtils.hasMimeTypeOfAudio(media.mimeType))
-                getString(R.string.ps_all_audio) else getString(
+            config.defaultAlbumName ?: getString(
                 R.string.ps_camera_roll
             )
         allMediaAlbum.bucketDisplayName = bucketDisplayName
@@ -989,7 +984,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
         requireActivity().runOnUiThread {
             mAdapter.getData().add(0, media)
             confirmSelect(media, false)
-            val position = if (mAdapter.isDisplayCamera()) 1 else 0
+            val position = 0
             mAdapter.notifyItemInserted(position)
             mAdapter.notifyItemRangeChanged(position, mAdapter.getData().size)
         }

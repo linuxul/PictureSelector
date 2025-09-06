@@ -141,9 +141,9 @@ open class SelectorSystemFragment : BaseSelectorFragment() {
                 SYSTEM_AUDIO
                 SYSTEM_VIDEO
             }
-            MediaType.AUDIO -> {
-                SYSTEM_AUDIO
-            }
+//            MediaType.AUDIO -> {
+//                SYSTEM_AUDIO
+//            }
             else -> {
                 SYSTEM_IMAGE
             }

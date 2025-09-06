@@ -55,15 +55,11 @@ open class MediaAlbumAdapter(var config: SelectorConfig) :
             mediaAlbum.bucketDisplayName,
             mediaAlbum.totalCount
         )
-        if (MediaUtils.hasMimeTypeOfAudio(mediaAlbum.bucketDisplayMimeType)) {
-            holder.ivFirstCover.setImageResource(R.drawable.ps_audio_placeholder)
-        } else {
-            config.imageEngine?.loadAlbumCover(
-                holder.itemView.context,
-                mediaAlbum.bucketDisplayCover,
-                holder.ivFirstCover
-            )
-        }
+        config.imageEngine?.loadAlbumCover(
+            holder.itemView.context,
+            mediaAlbum.bucketDisplayCover,
+            holder.ivFirstCover
+        )
         holder.tvSelectTag.visibility = if (mediaAlbum.isSelectedTag) View.VISIBLE else View.GONE
         holder.itemView.setOnClickListener {
             if (itemCount > lastSelectPosition) {

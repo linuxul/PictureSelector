@@ -174,13 +174,13 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         return this
     }
 
-    /**
-     * Custom recording callback listening
-     */
-    fun setOnRecordAudioListener(l: OnRecordAudioListener?): SelectionMainModel {
-        this.config.mListenerInfo.onRecordAudioListener = l
-        return this
-    }
+//    /**
+//     * Custom recording callback listening
+//     */
+//    fun setOnRecordAudioListener(l: OnRecordAudioListener?): SelectionMainModel {
+//        this.config.mListenerInfo.onRecordAudioListener = l
+//        return this
+//    }
 
     /**
      * Custom camera callback listening
@@ -677,9 +677,7 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         isPreviewEffect: Boolean,
         isFullScreen: Boolean
     ): SelectionMainModel {
-        if (this.config.mediaType != MediaType.AUDIO) {
-            this.config.isPreviewZoomEffect = isPreviewEffect
-        }
+        this.config.isPreviewZoomEffect = isPreviewEffect
         this.config.isPreviewFullScreenMode = isFullScreen
         return this
     }
@@ -696,14 +694,12 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         isFullScreen: Boolean,
         listView: ViewGroup
     ): SelectionMainModel {
-        if (this.config.mediaType != MediaType.AUDIO) {
-            this.config.isPreviewZoomEffect = isPreviewEffect
-            if (isPreviewEffect) {
-                RecycleItemViewParams.build(
-                    listView,
-                    if (isFullScreen) 0 else getStatusBarHeight(listView.context)
-                )
-            }
+        this.config.isPreviewZoomEffect = isPreviewEffect
+        if (isPreviewEffect) {
+            RecycleItemViewParams.build(
+                listView,
+                if (isFullScreen) 0 else getStatusBarHeight(listView.context)
+            )
         }
         this.config.isPreviewFullScreenMode = isFullScreen
         return this
@@ -729,15 +725,15 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         return this
     }
 
-    /**
-     * If you need to preview the audio
-     *
-     * @param isPreviewAudio
-     */
-    fun isPreviewAudio(isPreviewAudio: Boolean): SelectionMainModel {
-        this.config.isEnablePreviewAudio = isPreviewAudio
-        return this
-    }
+//    /**
+//     * If you need to preview the audio
+//     *
+//     * @param isPreviewAudio
+//     */
+//    fun isPreviewAudio(isPreviewAudio: Boolean): SelectionMainModel {
+//        this.config.isEnablePreviewAudio = isPreviewAudio
+//        return this
+//    }
 
     /**
      * If you need to preview the image
@@ -845,7 +841,7 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         }
         val activity = selector.getActivity()
             ?: throw NullPointerException("PictureSelector.create(); # Activity is empty")
-        if (config.imageEngine == null && config.mediaType != MediaType.AUDIO) {
+        if (config.imageEngine == null ) {
             throw NullPointerException("Please set the API # .setImageEngine(${ImageEngine::class.simpleName});")
         }
         val intent = Intent(activity, SelectorSupporterActivity::class.java)

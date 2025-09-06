@@ -319,12 +319,12 @@ class SelectionPreviewModel constructor(private var selector: PictureSelector) {
         if (position >= source.size) {
             throw NullPointerException("#position# cannot be greater than #source.size#")
         }
-        if (config.imageEngine == null && config.mediaType != MediaType.AUDIO) {
+        if (config.imageEngine == null) {
             throw NullPointerException("Please set the API # .setImageEngine(${ImageEngine::class.simpleName});")
         }
-        if (MediaUtils.hasMimeTypeOfAudio(source[position].mimeType)) {
-            config.isPreviewZoomEffect = false
-        }
+//        if (MediaUtils.hasMimeTypeOfAudio(source[position].mimeType)) {
+//            config.isPreviewZoomEffect = false
+//        }
         config.previewWrap.source = source.toMutableList()
         config.previewWrap.position = position
         config.previewWrap.isExternalPreview = true

@@ -11,7 +11,7 @@ class PreviewDataWrap {
     var bucketId: Long = 0
     var totalCount: Int = 0
     var isDownload: Boolean = false
-    var isDisplayCamera: Boolean = false
+//    var isDisplayCamera: Boolean = false
     var isBottomPreview: Boolean = false
     var isDisplayDelete: Boolean = false
     var isExternalPreview: Boolean = false
@@ -25,7 +25,7 @@ class PreviewDataWrap {
         wrap.totalCount = totalCount
         wrap.isDownload = isDownload
         wrap.isBottomPreview = isBottomPreview
-        wrap.isDisplayCamera = isDisplayCamera
+//        wrap.isDisplayCamera = isDisplayCamera
         wrap.isDisplayDelete = isDisplayDelete
         wrap.isExternalPreview = isExternalPreview
         wrap.source = source.toMutableList()
@@ -37,7 +37,7 @@ class PreviewDataWrap {
         bucketId = 0
         totalCount = 0
         isDownload = false
-        isDisplayCamera = false
+//        isDisplayCamera = false
         isBottomPreview = false
         isDisplayDelete = false
         if (source.isNotEmpty()) {

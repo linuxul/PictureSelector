@@ -153,7 +153,6 @@ class MainActivity : AppCompatActivity() {
         gallery.isMaxSelectEnabledMask(false)
         gallery.isPreviewImage(true)
         gallery.isPreviewVideo(true)
-        gallery.isPreviewAudio(false)
         gallery.isAutoPlay(false)
         gallery.isLoopAutoVideoPlay(false)
         gallery.isVideoPauseResumePlay(false)

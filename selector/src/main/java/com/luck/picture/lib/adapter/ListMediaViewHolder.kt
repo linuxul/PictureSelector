@@ -38,11 +38,12 @@ open class ListMediaViewHolder(itemView: View) : BaseListViewHolder(itemView) {
         mGetSelectResultListener?.onSelectResult()?.let { result ->
             isSelectedMedia(result.contains(media))
         }
-        if (MediaUtils.hasMimeTypeOfAudio(media.mimeType)) {
-            ivCover.setImageResource(R.drawable.ps_audio_placeholder)
-        } else {
-            config.imageEngine?.loadListImage(ivCover.context, media.getAvailablePath(), ivCover)
-        }
+//        if (MediaUtils.hasMimeTypeOfAudio(media.mimeType)) {
+//            ivCover.setImageResource(R.drawable.ps_audio_placeholder)
+//        } else {
+//            config.imageEngine?.loadListImage(ivCover.context, media.getAvailablePath(), ivCover)
+//        }
+        config.imageEngine?.loadListImage(ivCover.context, media.getAvailablePath(), ivCover)
         tvSelectView.setOnClickListener {
             if (media.isEnabledMask) {
                 return@setOnClickListener
@@ -110,9 +111,6 @@ open class ListMediaViewHolder(itemView: View) : BaseListViewHolder(itemView) {
                 }
                 MediaUtils.hasMimeTypeOfVideo(media.mimeType) -> {
                     config.isEnablePreviewVideo
-                }
-                MediaUtils.hasMimeTypeOfAudio(media.mimeType) -> {
-                    config.isEnablePreviewAudio
                 }
                 else -> {
                     false

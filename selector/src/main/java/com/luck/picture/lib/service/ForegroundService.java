@@ -75,8 +75,7 @@ public class ForegroundService extends Service {
         }
         SelectorConfig config = SelectorProviders.Companion.getInstance().getConfig();
 
-        String contentText = config.getMediaType() == MediaType.AUDIO
-                ? getString(R.string.ps_use_sound) : getString(R.string.ps_use_camera);
+        String contentText = getString(R.string.ps_use_camera);
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ps_ic_trans_1px)
                 .setContentTitle(getAppName())
