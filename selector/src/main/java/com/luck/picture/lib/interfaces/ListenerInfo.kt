@@ -11,7 +11,7 @@ class ListenerInfo {
     var onEditorMediaListener: OnEditorMediaListener? = null
     var onQueryFilterListener: OnQueryFilterListener? = null
 //    var onRecordAudioListener: OnRecordAudioListener? = null
-    var onCustomCameraListener: OnCustomCameraListener? = null
+//    var onCustomCameraListener: OnCustomCameraListener? = null
     var onSelectFilterListener: OnSelectFilterListener? = null
     var onReplaceFileNameListener: OnReplaceFileNameListener? = null
     var onCustomLoadingListener: OnCustomLoadingListener? = null
@@ -29,7 +29,7 @@ class ListenerInfo {
 //        this.onRecordAudioListener = null
         this.onQueryFilterListener = null
         this.onSelectFilterListener = null
-        this.onCustomCameraListener = null
+//        this.onCustomCameraListener = null
         this.onCustomLoadingListener = null
         this.onReplaceFileNameListener = null
         this.onResultCallbackListener = null

@@ -24,7 +24,7 @@ class TempDataProvider {
     /**
      * album data source
      */
-    var albumSource = mutableListOf<LocalMediaAlbum>()
+//    var albumSource = mutableListOf<LocalMediaAlbum>()
 
     /**
      * media data source
@@ -46,9 +46,9 @@ class TempDataProvider {
         if (mediaSource.isNotEmpty()) {
             mediaSource.clear()
         }
-        if (albumSource.isNotEmpty()) {
-            albumSource.clear()
-        }
+//        if (albumSource.isNotEmpty()) {
+//            albumSource.clear()
+//        }
         if (selectResult.isNotEmpty()) {
             selectResult.clear()
         }

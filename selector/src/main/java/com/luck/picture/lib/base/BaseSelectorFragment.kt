@@ -525,15 +525,7 @@ abstract class BaseSelectorFragment : Fragment() {
             outputUri = MediaUtils.parUri(context, outputFile)
             viewModel.outputUri = Uri.fromFile(outputFile)
         }
-        val customCameraListener = config.mListenerInfo.onCustomCameraListener
-        if (customCameraListener != null) {
-            customCameraListener.onCamera(
-                this,
-                MediaType.IMAGE,
-                outputUri,
-                SelectorConstant.REQUEST_CAMERA
-            )
-        } else {
+        {
             val imageCaptureComponent = config.registry.get(ImageCaptureComponent::class.java)
             if (imageCaptureComponent.isAssignableFrom(ImageCaptureComponent::class.java)) {
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -572,15 +564,7 @@ abstract class BaseSelectorFragment : Fragment() {
             outputUri = MediaUtils.parUri(context, outputFile)
             viewModel.outputUri = Uri.fromFile(outputFile)
         }
-        val customCameraListener = config.mListenerInfo.onCustomCameraListener
-        if (customCameraListener != null) {
-            customCameraListener.onCamera(
-                this,
-                MediaType.VIDEO,
-                outputUri,
-                SelectorConstant.REQUEST_CAMERA
-            )
-        } else {
+        {
             val videoCaptureComponent = config.registry.get(VideoCaptureComponent::class.java)
             if (videoCaptureComponent.isAssignableFrom(VideoCaptureComponent::class.java)) {
                 val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)

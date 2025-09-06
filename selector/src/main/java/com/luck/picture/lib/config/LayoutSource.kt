@@ -1,10 +1,8 @@
 package com.luck.picture.lib.config
 
 import com.luck.picture.lib.*
-import com.luck.picture.lib.adapter.MediaAlbumAdapter
 import com.luck.picture.lib.adapter.MediaListAdapter
 import com.luck.picture.lib.adapter.MediaPreviewAdapter
-import com.luck.picture.lib.dialog.AlbumListPopWindow
 
 /**
  * @author：luck

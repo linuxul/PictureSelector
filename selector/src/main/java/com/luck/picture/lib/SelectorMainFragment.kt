@@ -22,7 +22,6 @@ import com.luck.picture.lib.config.MediaType
 import com.luck.picture.lib.config.SelectionMode
 import com.luck.picture.lib.constant.SelectedState
 import com.luck.picture.lib.constant.SelectorConstant
-import com.luck.picture.lib.dialog.AlbumListPopWindow
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.entity.LocalMediaAlbum
 import com.luck.picture.lib.entity.PreviewDataWrap
@@ -86,7 +85,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
 
     private var isCameraCallback = false
 
-    lateinit var mAlbumWindow: AlbumListPopWindow
+//    lateinit var mAlbumWindow: AlbumListPopWindow
     lateinit var mAdapter: BaseMediaListAdapter
 
     private var intervalClickTime: Long = 0
@@ -105,7 +104,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         onMergeSelectedSource()
-        initAlbumWindow()
+//        initAlbumWindow()
         initTitleBar()
         initNavbarBar()
         initMediaAdapter()
@@ -143,7 +142,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        TempDataProvider.getInstance().albumSource = mAlbumWindow.getAlbumList()
+//        TempDataProvider.getInstance().albumSource = mAlbumWindow.getAlbumList()
         TempDataProvider.getInstance().mediaSource = mAdapter.getData().toMutableList()
     }
 
@@ -181,12 +180,12 @@ open class SelectorMainFragment : BaseSelectorFragment() {
                 mAdapter.notifyItemChanged(position)
             }
             // update selected tag
-            mAlbumWindow.notifyChangedSelectTag(getSelectResult())
+//            mAlbumWindow.notifyChangedSelectTag(getSelectResult())
             onSelectionResultChange(media)
         }
-        viewModel.albumLiveData.observe(viewLifecycleOwner) { albumList ->
-            onAlbumSourceChange(albumList)
-        }
+//        viewModel.albumLiveData.observe(viewLifecycleOwner) { albumList ->
+//            onAlbumSourceChange(albumList)
+//        }
         viewModel.mediaLiveData.observe(viewLifecycleOwner) { mediaList ->
             onMediaSourceChange(mediaList)
             SelectorLogUtils.info("当前数量->${mAdapter.getData().size}")
@@ -217,11 +216,11 @@ open class SelectorMainFragment : BaseSelectorFragment() {
     }
 
     open fun onShowAlbumWindowAsDropDown() {
-        if (mAlbumWindow.getAlbumList().isNotEmpty() && !config.isOnlySandboxDir) {
-            mTitleBar?.let {
-                mAlbumWindow.showAsDropDown(it)
-            }
-        }
+//        if (mAlbumWindow.getAlbumList().isNotEmpty() && !config.isOnlySandboxDir) {
+//            mTitleBar?.let {
+//                mAlbumWindow.showAsDropDown(it)
+//            }
+//        }
     }
 
     open fun onTitleBarClick(v: View) {
@@ -296,59 +295,59 @@ open class SelectorMainFragment : BaseSelectorFragment() {
     /**
      * Users can implement a custom album list PopWindow
      */
-    open fun createAlbumWindow(): AlbumListPopWindow {
-        return AlbumListPopWindow(requireContext())
-    }
+//    open fun createAlbumWindow(): AlbumListPopWindow {
+//        return AlbumListPopWindow(requireContext())
+//    }
 
-    open fun initAlbumWindow() {
-        mAlbumWindow = createAlbumWindow()
-        mAlbumWindow.setOnItemClickListener(object : OnItemClickListener<LocalMediaAlbum> {
-            override fun onItemClick(position: Int, data: LocalMediaAlbum) {
-                onAlbumItemClick(position, data)
-            }
-        })
-        mAlbumWindow.setOnWindowStatusListener(object : AlbumListPopWindow.OnWindowStatusListener {
-            override fun onShowing(isShowing: Boolean) {
-                onRotateArrowAnim(isShowing)
-            }
-        })
-    }
+//    open fun initAlbumWindow() {
+//        mAlbumWindow = createAlbumWindow()
+//        mAlbumWindow.setOnItemClickListener(object : OnItemClickListener<LocalMediaAlbum> {
+//            override fun onItemClick(position: Int, data: LocalMediaAlbum) {
+//                onAlbumItemClick(position, data)
+//            }
+//        })
+//        mAlbumWindow.setOnWindowStatusListener(object : AlbumListPopWindow.OnWindowStatusListener {
+//            override fun onShowing(isShowing: Boolean) {
+//                onRotateArrowAnim(isShowing)
+//            }
+//        })
+//    }
 
-    open fun onAlbumItemClick(position: Int, data: LocalMediaAlbum) {
-        mAlbumWindow.dismiss()
-        // Repeated clicks ignore
-        val oldCurrentAlbum = getCurrentAlbum()
-        if (data.isEqualAlbum(oldCurrentAlbum.bucketId)) {
-            return
-        }
-        // Cache the current album data before switching to the next album
-        mAlbumWindow.getAlbum(oldCurrentAlbum.bucketId)?.let {
-            val source = mAdapter.getData().toMutableList()
-            if (source.isNotEmpty() && source.first().id == SelectorConstant.INVALID_DATA) {
-                // ignore
-            } else {
-                it.source = source
-                it.cachePage = viewModel.page
-            }
-        }
-        // Update current album
-        setCurrentAlbum(data)
-//        mAdapter.setDisplayCamera(isDisplayCamera())
-        setDefaultAlbumTitle(data.bucketDisplayName)
-        if (data.cachePage > 0 && data.source.isNotEmpty()) {
-            // Album already has cached data，Start loading from cached page numbers
-            viewModel.page = data.cachePage
-            mAdapter.setDataNotifyChanged(data.source)
-            mRecycler.scrollToPosition(0)
-            mRecycler.setEnabledLoadMore(!data.isSandboxAlbum() && !config.isOnlySandboxDir && data.source.isNotEmpty())
-        } else {
-            // Never loaded, request data again
-            viewModel.loadMedia(data.bucketId)
-        }
-        if (config.isFastSlidingSelect) {
-            mDragSelectTouchListener?.setRecyclerViewHeaderCount(0)
-        }
-    }
+//    open fun onAlbumItemClick(position: Int, data: LocalMediaAlbum) {
+//        mAlbumWindow.dismiss()
+//        // Repeated clicks ignore
+//        val oldCurrentAlbum = getCurrentAlbum()
+//        if (data.isEqualAlbum(oldCurrentAlbum.bucketId)) {
+//            return
+//        }
+//        // Cache the current album data before switching to the next album
+//        mAlbumWindow.getAlbum(oldCurrentAlbum.bucketId)?.let {
+//            val source = mAdapter.getData().toMutableList()
+//            if (source.isNotEmpty() && source.first().id == SelectorConstant.INVALID_DATA) {
+//                // ignore
+//            } else {
+//                it.source = source
+//                it.cachePage = viewModel.page
+//            }
+//        }
+//        // Update current album
+//        setCurrentAlbum(data)
+////        mAdapter.setDisplayCamera(isDisplayCamera())
+//        setDefaultAlbumTitle(data.bucketDisplayName)
+//        if (data.cachePage > 0 && data.source.isNotEmpty()) {
+//            // Album already has cached data，Start loading from cached page numbers
+//            viewModel.page = data.cachePage
+//            mAdapter.setDataNotifyChanged(data.source)
+//            mRecycler.scrollToPosition(0)
+//            mRecycler.setEnabledLoadMore(!data.isSandboxAlbum() && !config.isOnlySandboxDir && data.source.isNotEmpty())
+//        } else {
+//            // Never loaded, request data again
+//            viewModel.loadMedia(data.bucketId)
+//        }
+//        if (config.isFastSlidingSelect) {
+//            mDragSelectTouchListener?.setRecyclerViewHeaderCount(0)
+//        }
+//    }
 
     open fun onRotateArrowAnim(showing: Boolean) {
         if (!config.isOnlySandboxDir) {
@@ -777,11 +776,11 @@ open class SelectorMainFragment : BaseSelectorFragment() {
      * Restore data after system recycling
      */
     open fun restoreMemoryData() {
-        val albumSource = TempDataProvider.getInstance().albumSource.toMutableList()
-        onAlbumSourceChange(albumSource)
+//        val albumSource = TempDataProvider.getInstance().albumSource.toMutableList()
+//        onAlbumSourceChange(albumSource)
         val mediaSource = TempDataProvider.getInstance().mediaSource.toMutableList()
         onMediaSourceChange(mediaSource)
-        TempDataProvider.getInstance().albumSource.clear()
+//        TempDataProvider.getInstance().albumSource.clear()
         TempDataProvider.getInstance().mediaSource.clear()
         if (config.isOnlySandboxDir) {
             val sandboxDir =
@@ -808,19 +807,19 @@ open class SelectorMainFragment : BaseSelectorFragment() {
      * Changes in album data
      * @param albumList album data
      */
-    open fun onAlbumSourceChange(albumList: MutableList<LocalMediaAlbum>) {
-        if (albumList.isNotEmpty()) {
-            setCurrentAlbum(albumList.first())
-            albumList.forEach { album ->
-                if (album.bucketId == getCurrentAlbum().bucketId) {
-                    album.isSelected = true
-                    return@forEach
-                }
-            }
-            mAlbumWindow.setAlbumList(albumList)
-            mAlbumWindow.notifyChangedSelectTag(getSelectResult())
-        }
-    }
+//    open fun onAlbumSourceChange(albumList: MutableList<LocalMediaAlbum>) {
+//        if (albumList.isNotEmpty()) {
+//            setCurrentAlbum(albumList.first())
+//            albumList.forEach { album ->
+//                if (album.bucketId == getCurrentAlbum().bucketId) {
+//                    album.isSelected = true
+//                    return@forEach
+//                }
+//            }
+//            mAlbumWindow.setAlbumList(albumList)
+//            mAlbumWindow.notifyChangedSelectTag(getSelectResult())
+//        }
+//    }
 
     /**
      * Changes in media data
@@ -906,7 +905,7 @@ open class SelectorMainFragment : BaseSelectorFragment() {
         if (media != null) {
             isCameraCallback = true
             onCheckDuplicateMedia(media)
-            onMergeCameraAlbum(media)
+//            onMergeCameraAlbum(media)
             onMergeCameraMedia(media)
         } else {
             SelectorLogUtils.info("analysisCameraData: Parsing LocalMedia object as empty")
@@ -938,44 +937,44 @@ open class SelectorMainFragment : BaseSelectorFragment() {
     /**
      * Merge media data generated by the camera into the album
      */
-    open fun onMergeCameraAlbum(media: LocalMedia) {
-        // merge album list
-        val allMediaAlbum =
-            mAlbumWindow.getAlbum(SelectorConstant.DEFAULT_ALL_BUCKET_ID) ?: LocalMediaAlbum()
-        allMediaAlbum.bucketId = SelectorConstant.DEFAULT_ALL_BUCKET_ID
-        val bucketDisplayName =
-            config.defaultAlbumName ?: getString(
-                R.string.ps_camera_roll
-            )
-        allMediaAlbum.bucketDisplayName = bucketDisplayName
-        allMediaAlbum.bucketDisplayCover = media.path
-        allMediaAlbum.bucketDisplayMimeType = media.mimeType
-        allMediaAlbum.source.add(0, media)
-        allMediaAlbum.totalCount += 1
-        val cameraMediaAlbum = mAlbumWindow.getAlbum(media.bucketId) ?: LocalMediaAlbum()
-        cameraMediaAlbum.bucketId = media.bucketId
-        cameraMediaAlbum.bucketDisplayName = media.bucketDisplayName
-        cameraMediaAlbum.bucketDisplayCover = media.path
-        cameraMediaAlbum.bucketDisplayMimeType = media.mimeType
-        cameraMediaAlbum.source.add(0, media)
-        cameraMediaAlbum.totalCount += 1
-
-        if (mAlbumWindow.getAlbumList().isEmpty()) {
-            val albumList = mutableListOf<LocalMediaAlbum>()
-            albumList.add(0, allMediaAlbum)
-            albumList.add(cameraMediaAlbum)
-            albumList.first().isSelected = true
-            setCurrentAlbum(albumList.first())
-            mAlbumWindow.setAlbumList(albumList)
-            mTvDataEmpty?.visibility = View.GONE
-        } else {
-            val cameraAlbum = mAlbumWindow.getAlbum(cameraMediaAlbum.bucketId)
-            if (cameraAlbum == null) {
-                mAlbumWindow.getAlbumList().add(cameraMediaAlbum)
-            }
-        }
-        mAlbumWindow.notifyItemRangeChanged()
-    }
+//    open fun onMergeCameraAlbum(media: LocalMedia) {
+//        // merge album list
+////        val allMediaAlbum =
+////            mAlbumWindow.getAlbum(SelectorConstant.DEFAULT_ALL_BUCKET_ID) ?: LocalMediaAlbum()
+////        allMediaAlbum.bucketId = SelectorConstant.DEFAULT_ALL_BUCKET_ID
+////        val bucketDisplayName =
+////            config.defaultAlbumName ?: getString(
+////                R.string.ps_camera_roll
+////            )
+////        allMediaAlbum.bucketDisplayName = bucketDisplayName
+////        allMediaAlbum.bucketDisplayCover = media.path
+////        allMediaAlbum.bucketDisplayMimeType = media.mimeType
+////        allMediaAlbum.source.add(0, media)
+////        allMediaAlbum.totalCount += 1
+//        val cameraMediaAlbum = mAlbumWindow.getAlbum(media.bucketId) ?: LocalMediaAlbum()
+//        cameraMediaAlbum.bucketId = media.bucketId
+//        cameraMediaAlbum.bucketDisplayName = media.bucketDisplayName
+//        cameraMediaAlbum.bucketDisplayCover = media.path
+//        cameraMediaAlbum.bucketDisplayMimeType = media.mimeType
+//        cameraMediaAlbum.source.add(0, media)
+//        cameraMediaAlbum.totalCount += 1
+//
+//        if (mAlbumWindow.getAlbumList().isEmpty()) {
+//            val albumList = mutableListOf<LocalMediaAlbum>()
+//            albumList.add(0, allMediaAlbum)
+//            albumList.add(cameraMediaAlbum)
+//            albumList.first().isSelected = true
+//            setCurrentAlbum(albumList.first())
+//            mAlbumWindow.setAlbumList(albumList)
+//            mTvDataEmpty?.visibility = View.GONE
+//        } else {
+//            val cameraAlbum = mAlbumWindow.getAlbum(cameraMediaAlbum.bucketId)
+//            if (cameraAlbum == null) {
+//                mAlbumWindow.getAlbumList().add(cameraMediaAlbum)
+//            }
+//        }
+//        mAlbumWindow.notifyItemRangeChanged()
+//    }
 
     /**
      * Merge camera generated media data into a list
