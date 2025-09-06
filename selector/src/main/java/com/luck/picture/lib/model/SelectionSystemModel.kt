@@ -11,7 +11,7 @@ import com.luck.picture.lib.config.MediaType
 import com.luck.picture.lib.config.SelectionMode
 import com.luck.picture.lib.config.SelectorConfig
 import com.luck.picture.lib.constant.SelectorConstant
-import com.luck.picture.lib.engine.CropEngine
+//import com.luck.picture.lib.engine.CropEngine
 import com.luck.picture.lib.engine.MediaConverterEngine
 import com.luck.picture.lib.factory.ClassFactory
 import com.luck.picture.lib.helper.FragmentInjectManager
@@ -76,13 +76,13 @@ class SelectionSystemModel constructor(
         return this
     }
 
-    /**
-     * Skip crop resource formatting
-     */
-    fun setSkipCropFormat(vararg format: String): SelectionSystemModel {
-        this.config.skipCropFormat.addAll(format.toMutableList())
-        return this
-    }
+//    /**
+//     * Skip crop resource formatting
+//     */
+//    fun setSkipCropFormat(vararg format: String): SelectionSystemModel {
+//        this.config.skipCropFormat.addAll(format.toMutableList())
+//        return this
+//    }
 
     /**
      * Custom permissions
@@ -125,13 +125,13 @@ class SelectionSystemModel constructor(
         return this
     }
 
-    /**
-     * Cropping
-     */
-    fun setCropEngine(engine: CropEngine?): SelectionSystemModel {
-        this.config.cropEngine = engine
-        return this
-    }
+//    /**
+//     * Cropping
+//     */
+//    fun setCropEngine(engine: CropEngine?): SelectionSystemModel {
+//        this.config.cropEngine = engine
+//        return this
+//    }
 
     /**
      * Compatible with Fragment fallback scheme, default to true

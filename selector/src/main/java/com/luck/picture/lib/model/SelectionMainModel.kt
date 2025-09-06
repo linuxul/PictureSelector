@@ -18,7 +18,7 @@ import com.luck.picture.lib.config.SelectionMode
 import com.luck.picture.lib.config.SelectorConfig
 import com.luck.picture.lib.constant.FileSizeUnitConstant
 import com.luck.picture.lib.constant.SelectorConstant
-import com.luck.picture.lib.engine.CropEngine
+//import com.luck.picture.lib.engine.CropEngine
 import com.luck.picture.lib.engine.ImageEngine
 import com.luck.picture.lib.engine.MediaConverterEngine
 import com.luck.picture.lib.entity.LocalMedia
@@ -142,13 +142,13 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         return this
     }
 
-    /**
-     * Cropping
-     */
-    fun setCropEngine(engine: CropEngine?): SelectionMainModel {
-        this.config.cropEngine = engine
-        return this
-    }
+//    /**
+//     * Cropping
+//     */
+//    fun setCropEngine(engine: CropEngine?): SelectionMainModel {
+//        this.config.cropEngine = engine
+//        return this
+//    }
 
     /**
      * Media Resource Converter Engine
@@ -490,15 +490,15 @@ class SelectionMainModel constructor(private var selector: PictureSelector, medi
         return this
     }
 
-    /**
-     * Skip crop resource formatting
-     *
-     * @param format example [LocalMedia.mimeType] [image/jpeg]
-     */
-    fun setSkipCropFormat(vararg format: String): SelectionMainModel {
-        this.config.skipCropFormat.addAll(format.toMutableList())
-        return this
-    }
+//    /**
+//     * Skip crop resource formatting
+//     *
+//     * @param format example [LocalMedia.mimeType] [image/jpeg]
+//     */
+//    fun setSkipCropFormat(vararg format: String): SelectionMainModel {
+//        this.config.skipCropFormat.addAll(format.toMutableList())
+//        return this
+//    }
 
     /**
      * Only query image format media resources

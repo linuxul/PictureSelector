@@ -831,32 +831,33 @@ abstract class BaseSelectorFragment : Fragment() {
      * Process the selection results based on user API settings
      */
     open fun handleSelectResult() {
-        val cropEngine = config.cropEngine
-        if (cropEngine != null && isCrop()) {
-            cropEngine.onCrop(
-                this,
-                getSelectResult(),
-                SelectorConstant.REQUEST_CROP
-            )
-        } else {
-            onConfirmComplete()
-        }
+//        val cropEngine = config.cropEngine
+//        if (cropEngine != null && isCrop()) {
+//            cropEngine.onCrop(
+//                this,
+//                getSelectResult(),
+//                SelectorConstant.REQUEST_CROP
+//            )
+//        } else {
+//            onConfirmComplete()
+//        }
+        onConfirmComplete()
     }
 
-    /**
-     * Media types that support cropping
-     */
-    open fun isCrop(): Boolean {
-        getSelectResult().forEach continuing@{ media ->
-            if (config.skipCropFormat.contains(media.mimeType)) {
-                return@continuing
-            }
-            if (MediaUtils.hasMimeTypeOfImage(media.mimeType)) {
-                return true
-            }
-        }
-        return false
-    }
+//    /**
+//     * Media types that support cropping
+//     */
+//    open fun isCrop(): Boolean {
+//        getSelectResult().forEach continuing@{ media ->
+//            if (config.skipCropFormat.contains(media.mimeType)) {
+//                return@continuing
+//            }
+//            if (MediaUtils.hasMimeTypeOfImage(media.mimeType)) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
@@ -995,22 +996,22 @@ abstract class BaseSelectorFragment : Fragment() {
      * Merge Cropping single images data
      */
     open fun mergeSingleCrop(data: Intent?, selectResult: MutableList<LocalMedia>) {
-        val media = selectResult.first()
-        val outputUri = if (data?.hasExtra(CropWrap.CROP_OUTPUT_URI) == true) {
-            data.getParcelableExtra<Uri>(CropWrap.CROP_OUTPUT_URI)
-        } else {
-            data?.getParcelableExtra(MediaStore.EXTRA_OUTPUT)
-        }
-        media.cropWidth = data?.getIntExtra(CropWrap.CROP_IMAGE_WIDTH, 0) ?: 0
-        media.cropHeight = data?.getIntExtra(CropWrap.CROP_IMAGE_HEIGHT, 0) ?: 0
-        media.cropOffsetX = data?.getIntExtra(CropWrap.CROP_OFFSET_X, 0) ?: 0
-        media.cropOffsetY = data?.getIntExtra(CropWrap.CROP_OFFSET_Y, 0) ?: 0
-        media.cropAspectRatio = data?.getFloatExtra(CropWrap.CROP_ASPECT_RATIO, 0F) ?: 0F
-        media.cropPath = if (MediaUtils.isContent(outputUri.toString())) {
-            outputUri.toString()
-        } else {
-            outputUri?.path
-        }
+//        val media = selectResult.first()
+//        val outputUri = if (data?.hasExtra(CropWrap.CROP_OUTPUT_URI) == true) {
+//            data.getParcelableExtra<Uri>(CropWrap.CROP_OUTPUT_URI)
+//        } else {
+//            data?.getParcelableExtra(MediaStore.EXTRA_OUTPUT)
+//        }
+//        media.cropWidth = data?.getIntExtra(CropWrap.CROP_IMAGE_WIDTH, 0) ?: 0
+//        media.cropHeight = data?.getIntExtra(CropWrap.CROP_IMAGE_HEIGHT, 0) ?: 0
+//        media.cropOffsetX = data?.getIntExtra(CropWrap.CROP_OFFSET_X, 0) ?: 0
+//        media.cropOffsetY = data?.getIntExtra(CropWrap.CROP_OFFSET_Y, 0) ?: 0
+//        media.cropAspectRatio = data?.getFloatExtra(CropWrap.CROP_ASPECT_RATIO, 0F) ?: 0F
+//        media.cropPath = if (MediaUtils.isContent(outputUri.toString())) {
+//            outputUri.toString()
+//        } else {
+//            outputUri?.path
+//        }
         onConfirmComplete()
     }
 
@@ -1018,25 +1019,25 @@ abstract class BaseSelectorFragment : Fragment() {
      * Merge Cropping multiple images data
      */
     open fun mergeMultipleCrop(data: Intent?, selectResult: MutableList<LocalMedia>) {
-        val json = data?.getStringExtra(MediaStore.EXTRA_OUTPUT)
-        if (json == null || TextUtils.isEmpty(json)) {
-            return
-        }
-        val array = JSONArray(json)
-        if (array.length() == selectResult.size) {
-            selectResult.forEachIndexed { i, media ->
-                val item = array.optJSONObject(i)
-                media.cropPath = item.optString(CropWrap.DEFAULT_CROP_OUTPUT_PATH)
-                media.cropWidth = item.optInt(CropWrap.DEFAULT_CROP_IMAGE_WIDTH)
-                media.cropHeight = item.optInt(CropWrap.DEFAULT_CROP_IMAGE_HEIGHT)
-                media.cropOffsetX = item.optInt(CropWrap.DEFAULT_CROP_OFFSET_X)
-                media.cropOffsetY = item.optInt(CropWrap.DEFAULT_CROP_OFFSET_Y)
-                media.cropAspectRatio = item.optDouble(CropWrap.DEFAULT_CROP_ASPECT_RATIO).toFloat()
-            }
-            onConfirmComplete()
-        } else {
-            throw IllegalStateException("Multiple image cropping results do not match selection results:::${array.length()}!=${selectResult.size}")
-        }
+//        val json = data?.getStringExtra(MediaStore.EXTRA_OUTPUT)
+//        if (json == null || TextUtils.isEmpty(json)) {
+//            return
+//        }
+//        val array = JSONArray(json)
+//        if (array.length() == selectResult.size) {
+//            selectResult.forEachIndexed { i, media ->
+//                val item = array.optJSONObject(i)
+//                media.cropPath = item.optString(CropWrap.DEFAULT_CROP_OUTPUT_PATH)
+//                media.cropWidth = item.optInt(CropWrap.DEFAULT_CROP_IMAGE_WIDTH)
+//                media.cropHeight = item.optInt(CropWrap.DEFAULT_CROP_IMAGE_HEIGHT)
+//                media.cropOffsetX = item.optInt(CropWrap.DEFAULT_CROP_OFFSET_X)
+//                media.cropOffsetY = item.optInt(CropWrap.DEFAULT_CROP_OFFSET_Y)
+//                media.cropAspectRatio = item.optDouble(CropWrap.DEFAULT_CROP_ASPECT_RATIO).toFloat()
+//            }
+//            onConfirmComplete()
+//        } else {
+//            throw IllegalStateException("Multiple image cropping results do not match selection results:::${array.length()}!=${selectResult.size}")
+//        }
     }
 
     /**

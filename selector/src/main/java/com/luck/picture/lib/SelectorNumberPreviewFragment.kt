@@ -260,18 +260,18 @@ open class SelectorNumberPreviewFragment : SelectorPreviewFragment() {
                 data: LocalMedia
             ) {
                 val activity = requireActivity()
-                val vibrator =
-                    activity.getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
-                if (SdkVersionUtils.isO()) {
-                    vibrator.vibrate(
-                        VibrationEffect.createOneShot(
-                            50,
-                            VibrationEffect.DEFAULT_AMPLITUDE
-                        )
-                    )
-                } else {
-                    vibrator.vibrate(50)
-                }
+//                val vibrator =
+//                    activity.getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
+//                if (SdkVersionUtils.isO()) {
+//                    vibrator.vibrate(
+//                        VibrationEffect.createOneShot(
+//                            50,
+//                            VibrationEffect.DEFAULT_AMPLITUDE
+//                        )
+//                    )
+//                } else {
+//                    vibrator.vibrate(50)
+//                }
                 galleryAdapter?.let {
                     if (holder.layoutPosition != it.itemCount - 1) {
                         itemTouchHelper.startDrag(holder)
@@ -396,7 +396,7 @@ open class SelectorNumberPreviewFragment : SelectorPreviewFragment() {
             }
             holder.viewBorder.visibility =
                 if (isSelected(currentMedia, media)) View.VISIBLE else View.INVISIBLE
-            holder.ivEditor.visibility = if (media.isEditor()) View.VISIBLE else View.GONE
+//            holder.ivEditor.visibility = View.GONE
             holder.ivVideoFlag.visibility =
                 if (MediaUtils.hasMimeTypeOfVideo(media.mimeType) || MediaUtils.hasMimeTypeOfAudio(
                         media.mimeType

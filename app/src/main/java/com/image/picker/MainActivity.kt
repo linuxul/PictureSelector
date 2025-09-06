@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         gallery.setPageSize(60)
         gallery.setImageEngine(GlideEngine.create())
         gallery.setMediaConverterEngine(null)
-        gallery.setCropEngine(null)
+//        gallery.setCropEngine(null)
         gallery.setOnEditorMediaListener(null)
         gallery.setOnFragmentLifecycleListener(null)
         gallery.setOnSelectFilterListener(geSelectFilterListener)

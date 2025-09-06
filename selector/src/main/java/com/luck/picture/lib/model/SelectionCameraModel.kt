@@ -11,7 +11,7 @@ import com.luck.picture.lib.SelectorTransparentActivity
 import com.luck.picture.lib.config.MediaType
 import com.luck.picture.lib.config.SelectorConfig
 import com.luck.picture.lib.constant.SelectorConstant
-import com.luck.picture.lib.engine.CropEngine
+//import com.luck.picture.lib.engine.CropEngine
 import com.luck.picture.lib.engine.MediaConverterEngine
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.factory.ClassFactory
@@ -71,13 +71,13 @@ class SelectionCameraModel constructor(
         return this
     }
 
-    /**
-     * Cropping
-     */
-    fun setCropEngine(engine: CropEngine?): SelectionCameraModel {
-        this.config.cropEngine = engine
-        return this
-    }
+//    /**
+//     * Cropping
+//     */
+//    fun setCropEngine(engine: CropEngine?): SelectionCameraModel {
+//        this.config.cropEngine = engine
+//        return this
+//    }
 
     /**
      * Set App Language
@@ -164,15 +164,15 @@ class SelectionCameraModel constructor(
         return this
     }
 
-    /**
-     * Skip crop resource formatting
-     *
-     * @param format example [LocalMedia.mimeType] [image/jpeg]
-     */
-    fun setSkipCropFormat(vararg format: String): SelectionCameraModel {
-        this.config.skipCropFormat.addAll(format.toMutableList())
-        return this
-    }
+//    /**
+//     * Skip crop resource formatting
+//     *
+//     * @param format example [LocalMedia.mimeType] [image/jpeg]
+//     */
+//    fun setSkipCropFormat(vararg format: String): SelectionCameraModel {
+//        this.config.skipCropFormat.addAll(format.toMutableList())
+//        return this
+//    }
 
 
     /**

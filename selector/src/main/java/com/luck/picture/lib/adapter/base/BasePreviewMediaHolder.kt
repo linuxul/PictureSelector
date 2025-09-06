@@ -32,11 +32,13 @@ abstract class BasePreviewMediaHolder(itemView: View) : RecyclerView.ViewHolder(
     var tvSelectView: StyleTextView =itemView.findViewById(R.id.ps_tv_check)
 
     open fun getRealSizeFromMedia(media: LocalMedia): IntArray {
-        return if ((media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0) {
-            intArrayOf(media.cropWidth, media.cropHeight)
-        } else {
-            intArrayOf(media.width, media.height)
-        }
+//        return if ((media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0) {
+//            intArrayOf(media.cropWidth, media.cropHeight)
+//        } else {
+//            intArrayOf(media.width, media.height)
+//        }
+
+        return intArrayOf(media.width, media.height)
     }
 
     abstract fun loadCover(media: LocalMedia)

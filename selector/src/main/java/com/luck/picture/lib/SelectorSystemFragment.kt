@@ -1,5 +1,6 @@
 package com.luck.picture.lib
 
+import android.R.attr.mimeType
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -161,11 +162,11 @@ open class SelectorSystemFragment : BaseSelectorFragment() {
                 createMultipleContents()
             }
         } else {
-            if (config.mediaType == MediaType.ALL) {
-                createSingleDocuments()
-            } else {
-                createContent()
-            }
+//            if (config.mediaType == MediaType.ALL) {
+//                createSingleDocuments()
+//            } else {
+//                createContent()
+//            }
         }
     }
 
@@ -193,10 +194,10 @@ open class SelectorSystemFragment : BaseSelectorFragment() {
                     return result
                 }
 
-                override fun createIntent(context: Context, mimeType: String?): Intent {
+                override fun createIntent(context: Context, input: String): Intent {
                     val intent = Intent(Intent.ACTION_PICK)
                     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                    intent.type = mimeType
+                    intent.type = input
                     return intent
                 }
             }) { result ->
@@ -247,16 +248,16 @@ open class SelectorSystemFragment : BaseSelectorFragment() {
                     return result
                 }
 
-                override fun createIntent(context: Context, mimeType: String?): Intent {
+                override fun createIntent(context: Context, input: String): Intent {
                     val intent: Intent =
                         when {
-                            TextUtils.equals(SYSTEM_VIDEO, mimeType) -> {
+                            TextUtils.equals(SYSTEM_VIDEO, input) -> {
                                 Intent(
                                     Intent.ACTION_PICK,
                                     MediaStore.Video.Media.EXTERNAL_CONTENT_URI
                                 )
                             }
-                            TextUtils.equals(SYSTEM_AUDIO, mimeType) -> {
+                            TextUtils.equals(SYSTEM_AUDIO, input) -> {
                                 Intent(
                                     Intent.ACTION_PICK,
                                     MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
@@ -295,103 +296,103 @@ open class SelectorSystemFragment : BaseSelectorFragment() {
     }
 
 
-    /**
-     * 同时获取图片或视频(单选)
-     */
-    open fun createSingleDocuments() {
-        mDocSingleLauncher =
-            registerForActivityResult(object : ActivityResultContract<String, Uri>() {
-                override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
-                    return intent?.data
-                }
+//    /**
+//     * 同时获取图片或视频(单选)
+//     */
+//    open fun createSingleDocuments() {
+//        mDocSingleLauncher =
+//            registerForActivityResult(object : ActivityResultContract<String, Uri>() {
+//                override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+//                    return intent?.data
+//                }
+//
+//                override fun createIntent(context: Context, input: String): Intent {
+//                    val intent = Intent(Intent.ACTION_PICK)
+//                    intent.type = input
+//                    return intent
+//                }
+//            }) { result ->
+//                if (result == null) {
+//                    onBackPressed()
+//                } else {
+//                    viewModel.viewModelScope.launch {
+//                        MediaUtils.getPath(requireContext(), result)?.let { absolutePath ->
+//                            val media =
+//                                MediaUtils.getAssignPathMedia(requireContext(), absolutePath)
+//                            if (media == null) {
+//                                onBackPressed()
+//                                SelectorLogUtils.info("createSingleDocuments: Parsing LocalMedia object as empty")
+//                            } else {
+//                                if (confirmSelect(media, false) == SelectedState.SUCCESS) {
+//                                    handleSelectResult()
+//                                } else {
+//                                    onBackPressed()
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//    }
 
-                override fun createIntent(context: Context, mimeType: String?): Intent {
-                    val intent = Intent(Intent.ACTION_PICK)
-                    intent.type = mimeType
-                    return intent
-                }
-            }) { result ->
-                if (result == null) {
-                    onBackPressed()
-                } else {
-                    viewModel.viewModelScope.launch {
-                        MediaUtils.getPath(requireContext(), result)?.let { absolutePath ->
-                            val media =
-                                MediaUtils.getAssignPathMedia(requireContext(), absolutePath)
-                            if (media == null) {
-                                onBackPressed()
-                                SelectorLogUtils.info("createSingleDocuments: Parsing LocalMedia object as empty")
-                            } else {
-                                if (confirmSelect(media, false) == SelectedState.SUCCESS) {
-                                    handleSelectResult()
-                                } else {
-                                    onBackPressed()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    }
 
-
-    /**
-     * 单选图片或视频
-     */
-    open fun createContent() {
-        mContentLauncher =
-            registerForActivityResult(object : ActivityResultContract<String, Uri>() {
-                override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
-                    return intent?.data
-                }
-
-                override fun createIntent(context: Context, mimeType: String?): Intent {
-                    val intent: Intent =
-                        when {
-                            TextUtils.equals(SYSTEM_VIDEO, mimeType) -> {
-                                Intent(
-                                    Intent.ACTION_PICK,
-                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-                                )
-                            }
-                            TextUtils.equals(SYSTEM_AUDIO, mimeType) -> {
-                                Intent(
-                                    Intent.ACTION_PICK,
-                                    MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-                                )
-                            }
-                            else -> {
-                                Intent(
-                                    Intent.ACTION_PICK,
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                                )
-                            }
-                        }
-                    return intent
-                }
-            }) { result ->
-                if (result == null) {
-                    onBackPressed()
-                } else {
-                    viewModel.viewModelScope.launch {
-                        MediaUtils.getPath(requireContext(), result)?.let { absolutePath ->
-                            val media =
-                                MediaUtils.getAssignPathMedia(requireContext(), absolutePath)
-                            if (media == null) {
-                                onBackPressed()
-                                SelectorLogUtils.info("createContent: Parsing LocalMedia object as empty")
-                            } else {
-                                if (confirmSelect(media, false) == SelectedState.SUCCESS) {
-                                    handleSelectResult()
-                                } else {
-                                    onBackPressed()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    }
+//    /**
+//     * 单选图片或视频
+//     */
+//    open fun createContent() {
+//        mContentLauncher =
+//            registerForActivityResult(object : ActivityResultContract<String, Uri>() {
+//                override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+//                    return intent?.data
+//                }
+//
+//                override fun createIntent(context: Context, input: String): Intent {
+//                    val intent: Intent =
+//                        when {
+//                            TextUtils.equals(SYSTEM_VIDEO, mimeType) -> {
+//                                Intent(
+//                                    Intent.ACTION_PICK,
+//                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+//                                )
+//                            }
+//                            TextUtils.equals(SYSTEM_AUDIO, mimeType) -> {
+//                                Intent(
+//                                    Intent.ACTION_PICK,
+//                                    MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+//                                )
+//                            }
+//                            else -> {
+//                                Intent(
+//                                    Intent.ACTION_PICK,
+//                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+//                                )
+//                            }
+//                        }
+//                    return intent
+//                }
+//            }) { result ->
+//                if (result == null) {
+//                    onBackPressed()
+//                } else {
+//                    viewModel.viewModelScope.launch {
+//                        MediaUtils.getPath(requireContext(), result)?.let { absolutePath ->
+//                            val media =
+//                                MediaUtils.getAssignPathMedia(requireContext(), absolutePath)
+//                            if (media == null) {
+//                                onBackPressed()
+//                                SelectorLogUtils.info("createContent: Parsing LocalMedia object as empty")
+//                            } else {
+//                                if (confirmSelect(media, false) == SelectedState.SUCCESS) {
+//                                    handleSelectResult()
+//                                } else {
+//                                    onBackPressed()
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//    }
 
     override fun onResultCanceled(requestCode: Int, resultCode: Int) {
         if (requestCode == SelectorConstant.REQUEST_GO_SETTING) {

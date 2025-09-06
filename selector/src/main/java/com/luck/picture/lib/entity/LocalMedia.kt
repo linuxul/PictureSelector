@@ -19,18 +19,18 @@ class LocalMedia() : Parcelable {
     var mimeType: String? = null
     var width: Int = 0
     var height: Int = 0
-    var cropPath: String? = null
-    var editorPath: String? = null
-    var cropWidth: Int = 0
-    var cropHeight: Int = 0
-    var cropOffsetX: Int = 0
-    var cropOffsetY: Int = 0
+//    var cropPath: String? = null
+//    var editorPath: String? = null
+//    var cropWidth: Int = 0
+//    var cropHeight: Int = 0
+//    var cropOffsetX: Int = 0
+//    var cropOffsetY: Int = 0
     var cropAspectRatio: Float = 0F
     var duration: Long = 0
     var size: Long = 0
     var dateAdded: Long = 0
     var orientation: Int = 0
-    var editorData: String? = null
+//    var editorData: String? = null
     var sandboxPath: String? = null
     var originalPath: String? = null
     var compressPath: String? = null
@@ -49,18 +49,18 @@ class LocalMedia() : Parcelable {
         mimeType = parcel.readString()
         width = parcel.readInt()
         height = parcel.readInt()
-        cropPath = parcel.readString()
-        editorPath = parcel.readString()
-        cropWidth = parcel.readInt()
-        cropHeight = parcel.readInt()
-        cropOffsetX = parcel.readInt()
-        cropOffsetY = parcel.readInt()
+//        cropPath = parcel.readString()
+//        editorPath = parcel.readString()
+//        cropWidth = parcel.readInt()
+//        cropHeight = parcel.readInt()
+//        cropOffsetX = parcel.readInt()
+//        cropOffsetY = parcel.readInt()
         cropAspectRatio = parcel.readFloat()
         duration = parcel.readLong()
         size = parcel.readLong()
         dateAdded = parcel.readLong()
         orientation = parcel.readInt()
-        editorData = parcel.readString()
+//        editorData = parcel.readString()
         sandboxPath = parcel.readString()
         originalPath = parcel.readString()
         compressPath = parcel.readString()
@@ -70,13 +70,13 @@ class LocalMedia() : Parcelable {
         isEnabledMask = parcel.readByte() != 0.toByte()
     }
 
-    fun isCrop(): Boolean {
-        return !TextUtils.isEmpty(cropPath)
-    }
+//    fun isCrop(): Boolean {
+//        return !TextUtils.isEmpty(cropPath)
+//    }
 
-    fun isEditor(): Boolean {
-        return !TextUtils.isEmpty(editorPath)
-    }
+//    fun isEditor(): Boolean {
+//        return !TextUtils.isEmpty(editorPath)
+//    }
 
     fun isCompress(): Boolean {
         return !TextUtils.isEmpty(compressPath)
@@ -96,12 +96,6 @@ class LocalMedia() : Parcelable {
 
     fun getAvailablePath(): String? {
         return when {
-            isCrop() -> {
-                cropPath
-            }
-            isEditor() -> {
-                editorPath
-            }
             isCompress() -> {
                 compressPath
             }
@@ -135,18 +129,18 @@ class LocalMedia() : Parcelable {
         result = 31 * result + (mimeType?.hashCode() ?: 0)
         result = 31 * result + width
         result = 31 * result + height
-        result = 31 * result + (cropPath?.hashCode() ?: 0)
-        result = 31 * result + (editorPath?.hashCode() ?: 0)
-        result = 31 * result + cropWidth
-        result = 31 * result + cropHeight
-        result = 31 * result + cropOffsetX
-        result = 31 * result + cropOffsetY
+//        result = 31 * result + (cropPath?.hashCode() ?: 0)
+//        result = 31 * result + (editorPath?.hashCode() ?: 0)
+//        result = 31 * result + cropWidth
+//        result = 31 * result + cropHeight
+//        result = 31 * result + cropOffsetX
+//        result = 31 * result + cropOffsetY
         result = 31 * result + cropAspectRatio.hashCode()
         result = 31 * result + duration.hashCode()
         result = 31 * result + size.hashCode()
         result = 31 * result + dateAdded.hashCode()
         result = 31 * result + orientation
-        result = 31 * result + (editorData?.hashCode() ?: 0)
+//        result = 31 * result + (editorData?.hashCode() ?: 0)
         result = 31 * result + (sandboxPath?.hashCode() ?: 0)
         result = 31 * result + (originalPath?.hashCode() ?: 0)
         result = 31 * result + (compressPath?.hashCode() ?: 0)
@@ -167,18 +161,18 @@ class LocalMedia() : Parcelable {
         parcel.writeString(mimeType)
         parcel.writeInt(width)
         parcel.writeInt(height)
-        parcel.writeString(cropPath)
-        parcel.writeString(editorPath)
-        parcel.writeInt(cropWidth)
-        parcel.writeInt(cropHeight)
-        parcel.writeInt(cropOffsetX)
-        parcel.writeInt(cropOffsetY)
+//        parcel.writeString(cropPath)
+//        parcel.writeString(editorPath)
+//        parcel.writeInt(cropWidth)
+//        parcel.writeInt(cropHeight)
+//        parcel.writeInt(cropOffsetX)
+//        parcel.writeInt(cropOffsetY)
         parcel.writeFloat(cropAspectRatio)
         parcel.writeLong(duration)
         parcel.writeLong(size)
         parcel.writeLong(dateAdded)
         parcel.writeInt(orientation)
-        parcel.writeString(editorData)
+//        parcel.writeString(editorData)
         parcel.writeString(sandboxPath)
         parcel.writeString(originalPath)
         parcel.writeString(compressPath)

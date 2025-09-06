@@ -66,22 +66,22 @@ open class ImageViewHolder(itemView: View) : ListMediaViewHolder(itemView) {
     open fun onMergeEditor(media: LocalMedia) {
         val selectResult = mGetSelectResultListener?.onSelectResult()
         if (selectResult != null && selectResult.isNotEmpty()) {
-            if (!media.isEditor()) {
-                val position = selectResult.indexOf(media)
-                if (position >= 0) {
-                    val existsMedia = selectResult[position]
-                    if (existsMedia.isEditor()) {
-                        media.cropWidth = existsMedia.cropWidth
-                        media.cropHeight = existsMedia.cropHeight
-                        media.editorPath = existsMedia.editorPath
-                        media.editorData = existsMedia.editorData
-                        media.cropOffsetX = existsMedia.cropOffsetX
-                        media.cropOffsetY = existsMedia.cropOffsetY
-                        media.cropAspectRatio = existsMedia.cropAspectRatio
-                    }
-                }
-            }
+//            if (!media.isEditor()) {
+//                val position = selectResult.indexOf(media)
+//                if (position >= 0) {
+//                    val existsMedia = selectResult[position]
+//                    if (existsMedia.isEditor()) {
+//                        media.cropWidth = existsMedia.cropWidth
+//                        media.cropHeight = existsMedia.cropHeight
+//                        media.editorPath = existsMedia.editorPath
+//                        media.editorData = existsMedia.editorData
+//                        media.cropOffsetX = existsMedia.cropOffsetX
+//                        media.cropOffsetY = existsMedia.cropOffsetY
+//                        media.cropAspectRatio = existsMedia.cropAspectRatio
+//                    }
+//                }
+//            }
         }
-        ivEditor.visibility = if (media.isEditor()) View.VISIBLE else View.GONE
+        ivEditor.visibility = View.GONE
     }
 }

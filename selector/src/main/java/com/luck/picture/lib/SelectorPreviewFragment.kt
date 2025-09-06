@@ -524,10 +524,10 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
                 }
             }
         }
-        if ((media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0) {
-            realWidth = media.cropWidth
-            realHeight = media.cropHeight
-        }
+//        if ((media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0) {
+//            realWidth = media.cropWidth
+//            realHeight = media.cropHeight
+//        }
         return intArrayOf(realWidth, realHeight)
     }
 
@@ -706,15 +706,15 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
     open fun onMojitoBeginAnimComplete(mojitoView: MagicalView?, showImmediately: Boolean) {
         val currentHolder = mAdapter.getCurrentViewHolder(viewPager.currentItem) ?: return
         val media = getPreviewWrap().source[viewPager.currentItem]
-        val isResetSize =
-            (media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0
-        val realWidth = if (isResetSize) media.cropWidth else media.width
-        val realHeight = if (isResetSize) media.cropHeight else media.height
-        if (MediaUtils.isLongImage(realWidth, realHeight)) {
-            currentHolder.imageCover.scaleType = ImageView.ScaleType.CENTER_CROP
-        } else {
-            currentHolder.imageCover.scaleType = ImageView.ScaleType.FIT_CENTER
-        }
+//        val isResetSize =
+//            (media.isCrop() || media.isEditor()) && media.cropWidth > 0 && media.cropHeight > 0
+//        val realWidth = if (isResetSize) media.cropWidth else media.width
+//        val realHeight = if (isResetSize) media.cropHeight else media.height
+//        if (MediaUtils.isLongImage(realWidth, realHeight)) {
+//            currentHolder.imageCover.scaleType = ImageView.ScaleType.CENTER_CROP
+//        } else {
+//            currentHolder.imageCover.scaleType = ImageView.ScaleType.FIT_CENTER
+//        }
         if (config.isAutoPlay) {
             autoPlayAudioAndVideo()
         } else {
@@ -872,17 +872,17 @@ open class SelectorPreviewFragment : BaseSelectorFragment() {
         } else {
             data?.getParcelableExtra<Uri>(MediaStore.EXTRA_OUTPUT)
         }
-        media.cropWidth = data?.getIntExtra(CropWrap.CROP_IMAGE_WIDTH, 0) ?: 0
-        media.cropHeight = data?.getIntExtra(CropWrap.CROP_IMAGE_HEIGHT, 0) ?: 0
-        media.cropOffsetX = data?.getIntExtra(CropWrap.CROP_OFFSET_X, 0) ?: 0
-        media.cropOffsetY = data?.getIntExtra(CropWrap.CROP_OFFSET_Y, 0) ?: 0
+//        media.cropWidth = data?.getIntExtra(CropWrap.CROP_IMAGE_WIDTH, 0) ?: 0
+//        media.cropHeight = data?.getIntExtra(CropWrap.CROP_IMAGE_HEIGHT, 0) ?: 0
+//        media.cropOffsetX = data?.getIntExtra(CropWrap.CROP_OFFSET_X, 0) ?: 0
+//        media.cropOffsetY = data?.getIntExtra(CropWrap.CROP_OFFSET_Y, 0) ?: 0
         media.cropAspectRatio = data?.getFloatExtra(CropWrap.CROP_ASPECT_RATIO, 0F) ?: 0F
-        media.editorPath = if (MediaUtils.isContent(outputUri.toString())) {
-            outputUri.toString()
-        } else {
-            outputUri?.path
-        }
-        media.editorData = data?.getStringExtra(CropWrap.DEFAULT_EXTRA_DATA)
+//        media.editorPath = if (MediaUtils.isContent(outputUri.toString())) {
+//            outputUri.toString()
+//        } else {
+//            outputUri?.path
+//        }
+//        media.editorData = data?.getStringExtra(CropWrap.DEFAULT_EXTRA_DATA)
         if (!getSelectResult().contains(media)) {
             mTvSelected?.performClick()
         }

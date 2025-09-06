@@ -5,7 +5,7 @@ import android.graphics.Color
 import com.luck.picture.lib.R
 import com.luck.picture.lib.registry.Registry
 import com.luck.picture.lib.constant.SelectorConstant
-import com.luck.picture.lib.engine.CropEngine
+//import com.luck.picture.lib.engine.CropEngine
 import com.luck.picture.lib.engine.ImageEngine
 import com.luck.picture.lib.engine.MediaConverterEngine
 import com.luck.picture.lib.entity.LocalMedia
@@ -68,7 +68,7 @@ class SelectorConfig {
     var previewWrap = PreviewDataWrap()
     var pageSize = SelectorConstant.DEFAULT_MAX_PAGE_SIZE
     var sortOrder: String? = null
-    var skipCropFormat = hashSetOf<String>()
+//    var skipCropFormat = hashSetOf<String>()
     var onlyQueryImageFormat = hashSetOf<String>()
     var onlyQueryVideoFormat = hashSetOf<String>()
     var onlyQueryAudioFormat = hashSetOf<String>()
@@ -82,7 +82,7 @@ class SelectorConfig {
     var videoOutputDir: String? = null
     var audioOutputDir: String? = null
     var registry = Registry()
-    var cropEngine: CropEngine? = null
+//    var cropEngine: CropEngine? = null
     var imageEngine: ImageEngine? = null
     var dataLoader: MediaLoader? = null
     var mediaConverterEngine: MediaConverterEngine? = null
@@ -148,7 +148,7 @@ class SelectorConfig {
         this.onlyQueryVideoFormat.clear()
         this.onlyQueryAudioFormat.clear()
         this.selectedSource.clear()
-        this.skipCropFormat.clear()
+//        this.skipCropFormat.clear()
         this.language = Language.SYSTEM_LANGUAGE
         this.defaultLanguage = Language.SYSTEM_LANGUAGE
         this.defaultAlbumName = null
@@ -161,7 +161,7 @@ class SelectorConfig {
 
     fun destroy() {
         this.dataLoader = null
-        this.cropEngine = null
+//        this.cropEngine = null
         this.imageEngine = null
         this.magicalInterpolator = null
         this.mediaConverterEngine = null
